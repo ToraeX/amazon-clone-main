@@ -1,0 +1,53 @@
+
+    
+    /* navbar start*/
+    #navbar{
+        background: #f9f9f9;
+    }
+    #logo{
+        font-size: 36px;
+        font-weight: 550;
+        color: black;
+        text-shadow: 0px 1px 1px black;
+        margin-bottom: 5px;
+    }
+    #logo span{
+        color: #ffa500;
+    }
+    .navbar-toggler span{
+        color: #ffa500;
+    }
+    .navbar-nav{
+        margin-left: 20px;
+    }
+    .nav-item .nav-link{
+        font-size: 16px;
+        font-weight: 550;
+        color: black;
+        letter-spacing: 1px;
+        border-radius: 3px;
+        transition: 0.9 ease-in-out;
+    }
+    .nav-item .nav-link:hover{
+        background: #ffa500;
+        color: white;
+    }
+    #navbar form button{
+        background: orange;
+        color: white;
+        border: none;
+    }
+    .nav-item .active {
+        background: #ffa500;
+        color: white;
+    }
+    
+    .login_tinks {
+      margin-right: 20px;
+    }
+    .buttom_styling {
+        margin-left: 250px;
+      }
+    
+    
+    /* navbar end*/

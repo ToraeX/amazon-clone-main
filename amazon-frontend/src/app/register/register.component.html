@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p class="h1">Register</p>
+      <form [formGroup]="Register" (ngSubmit)="register()">
+        <div class="form-group">
+          <label for="">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label for="">Mobile Number</label>
+          <input type="text" class="form-control" formControlName="mob" />
+        </div>
+
+        <div class="form-group">
+          <label for="">email_id</label>
+          <input type="text" class="form-control" formControlName="email" />
+        </div>
+        <div class="form-group">
+          <label for="">password</label>
+          <input
+            type="passwaord"
+            class="form-control"
+            formControlName="password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Repeat your password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="repeat_pass"
+          />
+        </div>
+        <div class="form-group mt-2">
+          <button class="btn btn-info" type="submit">Sign up</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col">
+      <p class="h1">Login Page</p>
+     <form [formGroup]="Login" action="">
+
+      <div class="form-group">
+        <label for="">Username</label>
+        <input type="text" class="form-control" formControlName="email" />
+      </div>
+
+     
+
+      <div class="form-group">
+        <label for="">Password</label>
+        <input type="text" class="form-control"  formControlName="password" />
+      </div>
+
+      <div class="form-group mt-2">
+        <button class="btn btn-info"  (click)="login()" >Login</button>
+      </div>
+
+     </form>
+      
+    </div>
+  </div>
+</div>
