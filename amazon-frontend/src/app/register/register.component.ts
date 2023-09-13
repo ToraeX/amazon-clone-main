@@ -3,9 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms'
 import { UserServiceService } from '../services/user-service.service';
 import { Router } from '@angular/router';
 
-
-
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -53,6 +50,7 @@ export class RegisterComponent implements OnInit{
       this.Register.controls.email.setValue('');
       this.Register.controls.password.setValue('');
       this.Register.controls.repeat_pass.setValue('');
+      
     }
    })
    

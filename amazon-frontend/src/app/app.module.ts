@@ -12,6 +12,8 @@ import { RegisterComponent } from './register/register.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SellerComponent } from './seller/seller.component';
+import { AddProductsComponent } from './add-products/add-products.component';
 
 
 
@@ -24,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     AddressComponent,
     AboutUsComponent,
     RegisterComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    SellerComponent,
+    AddProductsComponent
   ],
   imports: [
     BrowserModule,
