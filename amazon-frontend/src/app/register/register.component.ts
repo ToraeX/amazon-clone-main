@@ -77,7 +77,8 @@ export class RegisterComponent implements OnInit{
       //console.log( JSON.parse(localStorage.getItem('userData')));
       setTimeout(()=> {
         this.router.navigate(['']);
-      },1000)}
+      },1000)
+    }
    
   },(error)=>{
     console.log(error)

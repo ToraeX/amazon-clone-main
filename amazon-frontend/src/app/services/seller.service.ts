@@ -14,6 +14,17 @@ export class SellerService {
    getSellerDetails(){
     return this.http.get('http://localhost:3000/getSellers')
    }  
+   getBrands(){
+    return this.http.get('http://localhost:3000/getBrands')
+   }  
+
+   addProducts(data :any){
+    return this.http.post('http://localhost:3000/addProducts',{data})
+   }  
+
+   getProducts(){
+    return this.http.get('http://localhost:3000/getProducts')
+  }
 
    
 

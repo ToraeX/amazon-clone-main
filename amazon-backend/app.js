@@ -144,6 +144,8 @@ app.post("/address", (req, res) => {
   });
 });
 
+
+
 app.get('/getSellers',(req,res) => {
   const obj = req.body.data;
 
@@ -174,6 +176,95 @@ app.get('/getSellers',(req,res) => {
     }
   });
 });
+
+app.get('/getBrands',(req,res) => {
+  const obj = req.body.data;
+
+  var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "amazon_mobiles",
+  });
+
+  connection.connect();
+
+  var sql = `SELECT brand_id,brand_name FROM brands`;
+  connection.query(sql, (error, results, fields) => {
+    // if any errors
+    if (error) {
+      throw error;
+      res.json(false);
+    } else {
+      console.log(results);
+      if (results.length > 0) {
+        res.json(results);
+      } else {
+        res.json(false);
+      }
+      //res.json(true);;
+    }
+  });
+});
+
+app.get('/getProducts',(req,res) => {
+  const obj = req.body.data;
+
+  var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "amazon_mobiles",
+  });
+
+  connection.connect();
+
+  var sql = `SELECT *  FROM products_seller_info`;
+  connection.query(sql, (error, results, fields) => {
+    // if any errors
+    if (error) {
+      throw error;
+      res.json(false);
+    } else {
+      console.log(results);
+      if (results.length > 0) {
+        res.json(results);
+      } else {
+        res.json(false);
+      }
+      //res.json(true);;
+    }
+  });
+});
+
+
+
+app.post("/addProducts", (req, res) => {
+  const obj = req.body.data;
+
+  var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "amazon_mobiles",
+  });
+
+  connection.connect();
+
+  var sql = `INSERT INTO products_seller_info(product_name, brand_id, seller_id, price, specifications, image_path) 
+  VALUES('${obj.name}', '${obj.brand}', '${obj.sellerId}', '${obj.price}', '${obj.specs}', '${obj.imagePath}')`;
+  console.log(obj);
+  connection.query(sql, (error, results, fields) => {
+    if (error) {
+      throw error;
+      res.json(false);
+    } else {
+      console.log(results);
+      res.json(true);
+    }
+  });
+});
+
 
 // to run the server
 app.listen(3000, () => {

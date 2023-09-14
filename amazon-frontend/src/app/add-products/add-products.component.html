@@ -16,42 +16,45 @@
     <div class="row">
       <div class="col"></div>
       <div class="col">
-        <form >
+        <form [formGroup]="AddProductForm" (ngSubmit)="addProducts()">
           <h1>Add Product</h1>
           <div class="form-group">
             <label for="sellerName">Seller Name</label>
-            <select name="" id="" class="form-control">
-                <option value="" *ngFor=" let item of arrSeller"> {{item.seller_name}}</option>
+            <select name="" id="" class="form-control" formControlName="sellerId">
+                <option value="{{item.seller_id}}"   *ngFor=" let item of arrSeller"> {{item.seller_name}}</option>
             </select>
           </div>
           
          
-  
+          <div class="form-group">
+            <label for="sellerName">brand Name</label>
+            <select name="" id="" class="form-control" formControlName="brand">
+                <option value="{{item.brand_id}}"   *ngFor=" let item of arrBrands"> {{item.brand_name}}</option>
+            </select>
+          </div>
             
             <div class="form-group mt-2">
               <label for="productName">product Name</label>
-              <input type="text" id="productName" class="form-control" />
+              <input type="text" id="productName" class="form-control" formControlName="name" />
             </div>
             <div class="form-group">
               <label for="productPrice">product price</label>
-              <input type="text" id="productPrice" class="form-control" />
+              <input type="text" id="productPrice" class="form-control" formControlName="price" />
             </div>
             <div class="form-group">
               <label for="Specification">Specification</label>
-              <input type="text" id="Specification" class="form-control" />
+              <input type="text" id="Specification" class="form-control" formControlName="specs" />
             </div>
-  
-            <div class="form-group mt-3">
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+
+            <div class="form-group">
+              <label for="imagePath">Image Path</label>
+              <input type="text" id="imagePath" class="form-control" formControlName="imagePath" />
             </div>
             <div class="form-group form-check mt-3">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">I hereby accept all the terms and conditions with Amazon.</label>
             </div>
-            <div class="form-group">
-                <label for="Mobilenumber">date</label>
-                <input type="date" id="date" class="form-control" />
-              </div>
+        
             <div class="form-group my-2">
               <button type="submit" class="btn btn-primary">Register</button>
             </div>
