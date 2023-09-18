@@ -19,4 +19,7 @@ export class ContentComponent implements OnInit {
       }
     })
   }  
+  addToCart(data:any){
+    console.log(data);
+  }
 }
