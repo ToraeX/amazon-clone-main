@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import { Router } from '@angular/router';
+import { SellerService } from '../services/seller.service';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input() cartObject;
   userLoggedIn:any = false;
   user :any;
-  constructor(private router:Router){
+  cartproducts: any =[]
+  constructor(private router:Router ,private seller:SellerService){
 
   }
 
   ngOnInit(): void {
-    console.log(this.userLoggedIn)  
+   // this.getcartproducts()
+    //console.log(this.userLoggedIn)  
      this.user = JSON.parse(localStorage.getItem('userData'));
     
     if(this.user){
@@ -30,5 +34,17 @@ export class HeaderComponent implements OnInit {
     },1000)
     
     
+  }
+  getcartproducts(){
+    this.seller.getcartproducts().subscribe(data => {
+      if(data) {
+        this.cartproducts = data;
+        
+      }
+    })
+  }
+
+  getCartData(){
+    this.getcartproducts();
   }
 }

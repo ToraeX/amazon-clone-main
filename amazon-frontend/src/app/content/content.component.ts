@@ -19,7 +19,25 @@ export class ContentComponent implements OnInit {
       }
     })
   }  
+
   addToCart(data:any){
-    console.log(data);
+    console.log(data)
+    var object ={
+      user_id:1,
+      product_id : data.product_id,
+      product_name: data.product_name,
+      price: data.price,
+      image_url:data.image_path,
+      quantity:data.quantity
+    }
+
+    this.seller.addtocart(object).subscribe(data => {
+      if(data) {
+        
+        alert(`product added to cart`);
+      }
+    })
+  
+
   }
 }

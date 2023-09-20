@@ -26,6 +26,16 @@ export class SellerService {
     return this.http.get('http://localhost:3000/getProducts')
   }
 
-   
+  addtocart(data){
+    return this.http.post('http://localhost:3000/AddtoCart',{data : data})
+  }
 
+  getcartproducts(){
+    return this.http.get('http://localhost:3000/getcartproducts')
+  }
+
+
+
+
+  
 }

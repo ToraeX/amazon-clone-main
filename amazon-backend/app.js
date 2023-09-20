@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
+const db = require('./sql');
 // to allow the cross origin headers
 app.use(cors());
 
@@ -261,6 +262,61 @@ app.post("/addProducts", (req, res) => {
     } else {
       console.log(results);
       res.json(true);
+    }
+  });
+});
+
+
+app.post("/AddtoCart", async (req, res) => {
+  const obj = req.body.data;
+  console.log(obj)
+
+// check if product is already added in the cart;
+  const results = await db.checkIsProductAdded(obj);
+  
+  if(results.length > 0){
+    const result = await db.updateCartProduct(obj);
+    if(result){
+      res.json(true);
+    }
+  }else{
+    const result = db.insertIntoCart(obj);
+    if(result){
+      res.json(true);
+    }
+  }
+
+ 
+});
+
+
+
+app.get('/getcartproducts',(req,res) => {
+  const obj = req.body.data;
+
+  var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "amazon_mobiles",
+  });
+
+  connection.connect();
+
+  var sql = `SELECT *  FROM cart`;
+  connection.query(sql, (error, results, fields) => {
+    // if any errors
+    if (error) {
+      throw error;
+      res.json(false);
+    } else {
+      console.log(results);
+      if (results.length > 0) {
+        res.json(results);
+      } else {
+        res.json(false);
+      }
+      //res.json(true);;
     }
   });
 });
