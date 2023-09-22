@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SellerComponent } from './seller/seller.component';
 import { AddProductsComponent } from './add-products/add-products.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -28,7 +29,8 @@ import { AddProductsComponent } from './add-products/add-products.component';
     RegisterComponent,
     ContactUsComponent,
     SellerComponent,
-    AddProductsComponent
+    AddProductsComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SellerComponent } from './seller/seller.component';
 import { AddProductsComponent } from './add-products/add-products.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path : 'contact-us',component : ContactUsComponent},
   {path : 'seller',component : SellerComponent},
   {path : 'seller/addProducts',component : AddProductsComponent},
+  {path : 'checkout',component : CheckoutComponent},
   
 ];
 

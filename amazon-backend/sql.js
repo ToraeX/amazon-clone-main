@@ -56,8 +56,38 @@ insertIntoCart = (obj) => {
     });
   });
 };
+removeCart = (id) => {
+  return new Promise((resolve, reject) => {
+    var sql = `DELETE FROM cart where id = ${id};`;
+    connection.query(sql, (error, results, fields) => {
+      if (error) {
+        throw error;
+        resolve(false);
+      } else {
+        console.log(results);
+        resolve(true);
+      }
+    });
+  });
+}
+emptyCart = () => {
+  return new Promise((resolve, reject) => {
+    var sql = `TRUNCATE TABLE cart;`;
+    connection.query(sql, (error, results, fields) => {
+      if (error) {
+        throw error;
+        resolve(false);
+      } else {
+        console.log(results);
+        resolve(true);
+      }
+    });
+  });
+}
 module.exports = {
   checkIsProductAdded,
   updateCartProduct,
   insertIntoCart,
+  removeCart,
+  emptyCart
 };

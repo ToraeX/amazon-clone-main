@@ -23,5 +23,12 @@ addressUser(data: any){
   return this.http.post('http://localhost:3000/address',{data})
 }
 
+removeCart(data: any){
+  return this.http.post('http://localhost:3000/removeCart',{id : data})
+}
+
+emptyCart(){
+  return this.http.post('http://localhost:3000/emptyCart',{})
+}
 
 }

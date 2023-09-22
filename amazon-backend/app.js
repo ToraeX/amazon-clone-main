@@ -280,7 +280,7 @@ app.post("/AddtoCart", async (req, res) => {
       res.json(true);
     }
   }else{
-    const result = db.insertIntoCart(obj);
+    const result = await db.insertIntoCart(obj);
     if(result){
       res.json(true);
     }
@@ -319,6 +319,24 @@ app.get('/getcartproducts',(req,res) => {
       //res.json(true);;
     }
   });
+});
+
+app.post('/removeCart',(req,res)=> {
+  const results = db.removeCart(req.body.id);
+  if(results){
+    res.json(true);
+  }else{
+    res.json(false);
+  }
+});
+
+app.post('/emptyCart',(req,res)=> {
+  const results = db.emptyCart(req.body.id);
+  if(results){
+    res.json(true);
+  }else{
+    res.json(false);
+  }
 });
 
 
