@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SellerComponent } from './seller/seller.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component';
 
 
 
@@ -30,7 +31,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ContactUsComponent,
     SellerComponent,
     AddProductsComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ProceedToBuyComponent
   ],
   imports: [
     BrowserModule,

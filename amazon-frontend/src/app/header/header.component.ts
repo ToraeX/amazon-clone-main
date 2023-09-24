@@ -59,6 +59,7 @@ export class HeaderComponent implements OnInit {
   getCartData(){
     this.getcartproducts();
   }
+  
   removeCart(id:any){
     this.userService.removeCart(id).subscribe((data) => {
       if(data){

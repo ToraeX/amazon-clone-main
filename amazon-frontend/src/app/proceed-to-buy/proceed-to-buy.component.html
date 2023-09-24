@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-md-8 mb-4">
+    <div class="card mb-4">
+      <div class="card-header py-3">
+        <h5 class="mb-0">Biling details</h5>
+      </div>
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <title>Address Selection</title>
+          <!-- Include Bootstrap CSS -->
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          />
+        </head>
+        <body>
+          <div class="container mt-4">
+            <div class="row">
+              <div class="col-md-8">
+                <h4 class="font-weight-bold">Your Addresses</h4>
+              </div>
+            </div>
+
+            <hr class="my-2" />
+
+            <!-- Address List -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    name="submissionURL"
+                    value="/checkout/p/p-404-7652701-2113154/address/shiptodestination/ref=chk_addr_select_1_customer?_encoding=UTF8&amp;abBusinessGroupId=&amp;action=select-shipping&amp;addressID=75FFKL66CUBUAJ5RFXKAG13S5H84PW0C83A38C0WP48H5SRPXTQ2EIA2OX3QK5HE&amp;enableDeliveryPreferences=1&amp;fromAnywhere=0&amp;numberOfDistinctItems=2&amp;purchaseId=404-7652701-2113154&amp;requestToken="
+                    checked
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label font-weight-bold">
+                    Saurabh
+                  </label>
+                </div>
+                <p class="mb-2">
+                  T.T Sahare, Plot no.258, Near Bezonbagh Ground, NAGPUR,
+                  MAHARASHTRA, 440004, India
+                </p>
+              </div>
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    name="submissionURL"
+                    value="/checkout/p/p-404-7652701-2113154/address/shiptodestination/ref=chk_addr_select_2_customer?_encoding=UTF8&amp;abBusinessGroupId=&amp;action=select-shipping&amp;addressID=W3SG7MEYH3YYEEV54DHEG13S5H84PW0C83A38C0WP48H5SRPXTQ2EYA2OXH3MGQP&amp;enableDeliveryPreferences=1&amp;fromAnywhere=0&amp;numberOfDistinctItems=2&amp;purchaseId=404-7652701-2113154&amp;requestToken="
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label font-weight-bold">
+                    Sonu
+                  </label>
+                </div>
+                <p class="mb-2">
+                  T.T Sahare, Plot no.258, Near Bezonbagh Ground, NAGPUR,
+                  MAHARASHTRA, 440004, India
+                </p>
+              </div>
+            </div>
+
+            <!-- Add New Address Button -->
+            <div class="row mt-4">
+              <div class="col-md-12">
+                <a href="#" class="btn btn-primary">Add a new address</a>
+              </div>
+            </div>
+          </div>
+        </body>
+      </html>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4">
+    <div class="card mb-4">
+      <div class="card-header py-3">
+        <h5 class="mb-0">Summary</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+            *ngFor="let item of cartproducts"
+          >
+            Product
+            <span>{{ item.product_name }}</span>
+          </li>
+
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center px-0"
+          >
+            Delivery Type
+            <span>Cash on delivery</span>
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
+          >
+            <div>
+              <strong>Total amount</strong>
+              <strong>
+                <p class="mb-0">(including GST)</p>
+              </strong>
+            </div>
+            <span
+              ><strong>{{ total }}</strong></span
+            >
+          </li>
+        </ul>
+
+        <button type="button" class="btn btn-primary btn-lg btn-block">
+          Make purchase
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

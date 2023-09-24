@@ -8,7 +8,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SellerComponent } from './seller/seller.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-
+import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component';
 
 const routes: Routes = [
   {path : '',component : ContentComponent},
@@ -19,6 +19,8 @@ const routes: Routes = [
   {path : 'seller',component : SellerComponent},
   {path : 'seller/addProducts',component : AddProductsComponent},
   {path : 'checkout',component : CheckoutComponent},
+  {path :  'ProceedToBuy' , component : ProceedToBuyComponent}
+
   
 ];
 

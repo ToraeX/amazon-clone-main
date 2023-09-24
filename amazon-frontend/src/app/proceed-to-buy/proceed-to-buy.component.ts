@@ -1,15 +1,15 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SellerService } from '../services/seller.service';
 import { UserServiceService } from '../services/user-service.service';
 
-
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  selector: 'app-proceed-to-buy',
+  templateUrl: './proceed-to-buy.component.html',
+  styleUrls: ['./proceed-to-buy.component.css']
 })
 
-export class CheckoutComponent implements OnInit{
+
+export class ProceedToBuyComponent implements OnInit {
   cartproducts:any = [];
   total : any = 0;
   constructor(private seller : SellerService ,private userService:UserServiceService){
@@ -31,24 +31,6 @@ export class CheckoutComponent implements OnInit{
         });
         this.total = finalTotal;
         
-      }
-    })
-  }
-
-  removeCart(id:any){
-    this.userService.removeCart(id).subscribe((data) => {
-      if(data){
-        alert('item removed from cart');
-        this.getcartproducts();
-      }
-    })
-  }
-
-  emptyCart(){
-    this.userService.emptyCart().subscribe((data) => {
-      if(data){
-        alert('item removed from cart');
-        this.cartproducts = [];
       }
     })
   }
