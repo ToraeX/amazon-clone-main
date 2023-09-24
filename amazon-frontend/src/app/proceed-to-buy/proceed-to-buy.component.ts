@@ -11,12 +11,14 @@ import { UserServiceService } from '../services/user-service.service';
 
 export class ProceedToBuyComponent implements OnInit {
   cartproducts:any = [];
+  addresses:any =[] 
   total : any = 0;
-  constructor(private seller : SellerService ,private userService:UserServiceService){
+  constructor(private seller : SellerService ,private userService:UserServiceService, private user : UserServiceService){
 
   }
   ngOnInit(): void {
     this.getcartproducts();
+    this.getaddress()
   }
 
   getcartproducts(){
@@ -34,4 +36,21 @@ export class ProceedToBuyComponent implements OnInit {
       }
     })
   }
+
+
+  getaddress(){
+    this.userService.getuserAddress().subscribe(data => {
+      if(data) {
+      
+        this.addresses = data;
+        console.log(data,'address')
+       
+        
+      }
+    })
+  }
+  addAddress(){
+    
+  }
+
 }

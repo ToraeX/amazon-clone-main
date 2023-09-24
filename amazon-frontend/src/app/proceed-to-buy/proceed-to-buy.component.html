@@ -1,3 +1,4 @@
+<div class="container mt-5">
 <div class="row">
   <div class="col-md-8 mb-4">
     <div class="card mb-4">
@@ -30,26 +31,9 @@
             <hr class="my-2" />
 
             <!-- Address List -->
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    name="submissionURL"
-                    value="/checkout/p/p-404-7652701-2113154/address/shiptodestination/ref=chk_addr_select_1_customer?_encoding=UTF8&amp;abBusinessGroupId=&amp;action=select-shipping&amp;addressID=75FFKL66CUBUAJ5RFXKAG13S5H84PW0C83A38C0WP48H5SRPXTQ2EIA2OX3QK5HE&amp;enableDeliveryPreferences=1&amp;fromAnywhere=0&amp;numberOfDistinctItems=2&amp;purchaseId=404-7652701-2113154&amp;requestToken="
-                    checked
-                    class="form-check-input"
-                  />
-                  <label class="form-check-label font-weight-bold">
-                    Saurabh
-                  </label>
-                </div>
-                <p class="mb-2">
-                  T.T Sahare, Plot no.258, Near Bezonbagh Ground, NAGPUR,
-                  MAHARASHTRA, 440004, India
-                </p>
-              </div>
-              <div class="col-md-6">
+            <div class="row" *ngFor="let value of addresses">
+              
+              <div class="col-md-8">
                 <div class="form-check">
                   <input
                     type="radio"
@@ -58,20 +42,20 @@
                     class="form-check-input"
                   />
                   <label class="form-check-label font-weight-bold">
-                    Sonu
+                    {{value.Name}}
                   </label>
+                  <span class="mb-2">
+                    {{value.Address + ', ' +  value.Area + ', ' + value.City + ', ' + value.State + ', ' + value.Pincode }}
+                  </span>
                 </div>
-                <p class="mb-2">
-                  T.T Sahare, Plot no.258, Near Bezonbagh Ground, NAGPUR,
-                  MAHARASHTRA, 440004, India
-                </p>
+              
               </div>
             </div>
 
             <!-- Add New Address Button -->
-            <div class="row mt-4">
+            <div class="row mt-2 pb-3">
               <div class="col-md-12">
-                <a href="#" class="btn btn-primary">Add a new address</a>
+                <a  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addressdiv">Add a new address</a>
               </div>
             </div>
           </div>
@@ -82,7 +66,7 @@
 
   <div class="col-md-4 mb-4">
     <div class="card mb-4">
-      <div class="card-header py-3">
+      <div class="card-header">
         <h5 class="mb-0">Summary</h5>
       </div>
       <div class="card-body">
@@ -111,7 +95,7 @@
               </strong>
             </div>
             <span
-              ><strong>{{ total }}</strong></span
+              ><strong>{{total}}</strong></span
             >
           </li>
         </ul>
@@ -123,3 +107,75 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- Modal Popup code -->
+
+<div class="modal fade" id="addressdiv" tabindex="-1" aria-labelledby="addressdiv" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="card-header" style="width: 100%;">
+          <div class="mb-0"><b>Enter New Delivery Address</b></div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body">
+        <div class="container">
+          <div class="h4">Add new address</div>
+          <div class="mt-2">
+            <form action="">
+              <div>
+                <label for="country"><b>country/region</b></label>
+                <select name="" id="country" class="form-control">
+                  <option value="">India</option>
+                </select>
+              </div>
+           
+            <div class="mt-2">
+              <label for="fullName" id="fullName"><b>Full Name</b></label>
+              <input type="text" id="fullName" class="form-control" placeholder="full name">
+            </div>
+
+            <div class="mt-2">
+              <label for="mob" id="mob"><b>Mobile Number</b></label>
+              <input type="text" id="mob" class="form-control" placeholder="Mobile Number">
+            </div>
+
+            <div class="mt-2">
+              <label for="pin" id="pin"><b>Pincode</b></label>
+              <input type="text" id="pin" class="form-control" placeholder="Pincode">
+            </div>
+
+            <div class="mt-2">
+              <label for="address" id="address"><b>Flat, House no., Building, Company, Apartment</b></label>
+              <input type="text" id="address" class="form-control" placeholder="Flat, House no., Building, Company, Apartment">
+            </div>
+
+            <div>
+              <label for="country"><b>city</b></label>
+              <select name="" id="city" class="form-control">
+                <option value="">choose a state</option>
+              </select>
+            </div>
+
+            <div class="mt-4">
+              <a href="" class="btn btn-warning">Use this address</a>
+            </div>
+
+
+            </form>
+          </div>
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal popup code ends here -->

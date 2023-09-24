@@ -23,6 +23,9 @@ addressUser(data: any){
   return this.http.post('http://localhost:3000/address',{data})
 }
 
+getuserAddress(){
+  return this.http.get('http://localhost:3000/getAddress')
+}
 removeCart(data: any){
   return this.http.post('http://localhost:3000/removeCart',{id : data})
 }

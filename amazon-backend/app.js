@@ -339,6 +339,36 @@ app.post('/emptyCart',(req,res)=> {
   }
 });
 
+app.get('/getAddress',(req,res)=> {
+
+
+  var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "amazon_mobiles",
+  });
+
+  connection.connect();
+
+  var sql = `SELECT *  FROM address`;
+  connection.query(sql, (error, results, fields) => {
+    // if any errors
+    if (error) {
+      throw error;
+      res.json(false);
+    } else {
+      console.log(results);
+      if (results.length > 0) {
+        res.json(results);
+      } else {
+        res.json(false);
+      }
+      //res.json(true);;
+    }
+  });
+});
+
 
 // to run the server
 app.listen(3000, () => {
