@@ -39,13 +39,13 @@
                     type="radio"
                     name="submissionURL"
                     value="/checkout/p/p-404-7652701-2113154/address/shiptodestination/ref=chk_addr_select_2_customer?_encoding=UTF8&amp;abBusinessGroupId=&amp;action=select-shipping&amp;addressID=W3SG7MEYH3YYEEV54DHEG13S5H84PW0C83A38C0WP48H5SRPXTQ2EYA2OXH3MGQP&amp;enableDeliveryPreferences=1&amp;fromAnywhere=0&amp;numberOfDistinctItems=2&amp;purchaseId=404-7652701-2113154&amp;requestToken="
-                    class="form-check-input"
+                    class="form-check-input"[checked]="true"
                   />
                   <label class="form-check-label font-weight-bold">
-                    {{value.Name}}
+                    {{value.name}}
                   </label>
                   <span class="mb-2">
-                    {{value.Address + ', ' +  value.Area + ', ' + value.City + ', ' + value.State + ', ' + value.Pincode }}
+                    {{value.address + ', ' +  value.area + ', ' + value.city + ', ' + value.state + ', ' + value.pincode }}
                   </span>
                 </div>
               
@@ -118,7 +118,7 @@
         <div class="card-header" style="width: 100%;">
           <div class="mb-0"><b>Enter New Delivery Address</b></div>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" #btnClose class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
 
@@ -126,43 +126,59 @@
         <div class="container">
           <div class="h4">Add new address</div>
           <div class="mt-2">
-            <form action="">
-              <div>
-                <label for="country"><b>country/region</b></label>
-                <select name="" id="country" class="form-control">
-                  <option value="">India</option>
-                </select>
-              </div>
-           
-            <div class="mt-2">
+            <form [formGroup]="AddressNew" (ngSubmit)="saveAddress()">
+              <div class="mt-2">
               <label for="fullName" id="fullName"><b>Full Name</b></label>
-              <input type="text" id="fullName" class="form-control" placeholder="full name">
+              <input type="text" id="fullName" class="form-control" placeholder="full name" formControlName="name">
             </div>
 
             <div class="mt-2">
               <label for="mob" id="mob"><b>Mobile Number</b></label>
-              <input type="text" id="mob" class="form-control" placeholder="Mobile Number">
+              <input type="text" id="mob" class="form-control" placeholder="Mobile Number" formControlName="mob">
             </div>
 
             <div class="mt-2">
-              <label for="pin" id="pin"><b>Pincode</b></label>
-              <input type="text" id="pin" class="form-control" placeholder="Pincode">
+              <label for="mob" id="mob"><b>Area</b></label>
+              <input type="text" id="mob" class="form-control" placeholder="Mobile Number" formControlName="area">
+            </div>
+
+            <div class="mt-2">
+              <label for="mob" id="mob"><b>Landmark</b></label>
+              <input type="text" id="mob" class="form-control" placeholder="Mobile Number" formControlName="landmark">
             </div>
 
             <div class="mt-2">
               <label for="address" id="address"><b>Flat, House no., Building, Company, Apartment</b></label>
-              <input type="text" id="address" class="form-control" placeholder="Flat, House no., Building, Company, Apartment">
+              <input type="text" formControlName="address" id="address" class="form-control" placeholder="Flat, House no., Building, Company, Apartment">
+            </div>
+
+            <div class="mt-2">
+              <label for="pin" id="pin"><b>Pincode</b></label>
+              <input type="text" formControlName="pincode" id="pin" class="form-control" placeholder="Pincode">
+            </div>
+            <div>
+              <label for="country"><b>city</b></label>
+              <select name="" formControlName="city" id="city" class="form-control">
+                <option value="Nagpur">Nagpur</option>
+              </select>
             </div>
 
             <div>
-              <label for="country"><b>city</b></label>
-              <select name="" id="city" class="form-control">
-                <option value="">choose a state</option>
+              <label for="country"><b>state</b></label>
+              <select name="" formControlName="state" id="state" class="form-control">
+                <option value="Maharashtra">Maharashtra</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="country"><b>country/region</b></label>
+              <select name="" id="country" class="form-control" formControlName="countryId">
+                <option value="1">India</option>
               </select>
             </div>
 
             <div class="mt-4">
-              <a href="" class="btn btn-warning">Use this address</a>
+              <button type="submit" class="btn btn-warning">Use this address</button>
             </div>
 
 
@@ -172,8 +188,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>

@@ -84,10 +84,44 @@ emptyCart = () => {
     });
   });
 }
+
+getCountryList = () => {
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT * FROM country_master;`;
+    connection.query(sql, (error, results, fields) => {
+      if (error) {
+        throw error;
+        resolve(false);
+      } else {
+        console.log({results});
+        resolve(results);
+      }
+    });
+  });
+}
+
+saveAddress = (obj) => {
+  return new Promise((resolve, reject) => {
+    var sql = `INSERT INTO address(name, mobileNumber, area, landmark, address, pincode, city, state,country_id,user_id) VALUES('${obj.name}', '${obj.mob}', '${obj.address}',
+     '${obj.area}', '${obj.landmark}', '${obj.pincode}', '${obj.city}', '${obj.state}','${obj.countryId}','${obj.userId}')`;
+    console.log(sql);
+    connection.query(sql, (error, results, fields) => {
+      if (error) {
+        throw error;
+        resolve(false);
+      } else {
+        console.log(results);
+        resolve(true);
+      }
+    });
+  });
+}
 module.exports = {
   checkIsProductAdded,
   updateCartProduct,
   insertIntoCart,
   removeCart,
-  emptyCart
+  emptyCart,
+  getCountryList,
+  saveAddress
 };

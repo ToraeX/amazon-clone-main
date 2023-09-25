@@ -32,9 +32,6 @@ app.post("", (req, res) => {
   res.send("hello world");
 });
 
-app.post("/saveAddress", (req, res) => {
-  res.send("hello world");
-});
 
 app.post("/addSeller", (req, res) => {
   const obj = req.body.data;
@@ -339,6 +336,8 @@ app.post('/emptyCart',(req,res)=> {
   }
 });
 
+
+
 app.get('/getAddress',(req,res)=> {
 
 
@@ -368,6 +367,35 @@ app.get('/getAddress',(req,res)=> {
     }
   });
 });
+
+//ADD NEW ADDRESS//
+
+app.post("/saveAddress", async(req, res) => {
+  const obj = req.body.data;
+  const results = await db.saveAddress(obj);
+  if(results){
+    res.json(true);
+  }else{
+    res.json(false);
+  }
+});
+
+app.get('/getCountryList',async (req,res) => {
+  const results = await db.getCountryList();
+  if(results.length > 0){
+    res.json(results);
+  }else{
+    res.json(false);
+  }
+});
+
+
+
+
+
+
+
+
 
 
 // to run the server

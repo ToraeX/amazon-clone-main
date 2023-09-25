@@ -19,8 +19,8 @@ export class UserServiceService {
   }
 
 
-addressUser(data: any){
-  return this.http.post('http://localhost:3000/address',{data})
+  saveAddress(data: any){
+  return this.http.post('http://localhost:3000/saveAddress',{data})
 }
 
 getuserAddress(){
@@ -33,5 +33,11 @@ removeCart(data: any){
 emptyCart(){
   return this.http.post('http://localhost:3000/emptyCart',{})
 }
+
+getCountryList(){
+  return this.http.get('http://localhost:3000/getCountryList')
+}
+
+
 
 }
