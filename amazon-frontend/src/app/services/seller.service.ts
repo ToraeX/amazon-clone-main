@@ -33,9 +33,5 @@ export class SellerService {
   getcartproducts(){
     return this.http.get('http://localhost:3000/getcartproducts')
   }
-
-
-
-
   
 }

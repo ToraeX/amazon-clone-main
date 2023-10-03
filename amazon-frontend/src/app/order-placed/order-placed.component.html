@@ -72,40 +72,42 @@
           </div>
         </div>
       </div>
-      <div class="card px-4 d-flex align-items-end bg-light mb-3 ">
+      <div class="card px-4 d-flex align-items-end bg-light mt-3 ">
+        <form [formGroup]="PaymentForm" (ngSubmit)="savePayment()">
         <p class="h8 py-3">Payment Details</p>
         <div class="row gx-3">
           <div class="col-12">
             <div class="d-flex flex-column">
               <p class="text mb-1">Name</p>
-              <input class="form-control mb-3" type="text" placeholder="name" value="{{FinalAddress.name}}">
+              <input class="form-control mb-3" type="text" formControlName="name"  placeholder="name" value="{{FinalAddress.name}}">
             </div>
           </div>
           <div class="col-12">
             <div class="d-flex flex-column">
               <p class="text mb-1">Card Number</p>
-              <input class="form-control mb-3" type="text" placeholder="1234 5678 435678">
+              <input class="form-control mb-3" type="text" placeholder="1234 5678 435678" formControlName="cardNumber">
             </div>
           </div>
           <div class="col-6">
             <div class="d-flex flex-column">
               <p class="text mb-1">Expiry</p>
-              <input class="form-control mb-3" type="text" placeholder="MM/YYYY">
+              <input class="form-control mb-3" type="text" placeholder="MM/YYYY" formControlName="expiry">
             </div>
           </div>
           <div class="col-6">
             <div class="d-flex flex-column">
               <p class="text mb-1">CVV/CVC</p>
-              <input class="form-control mb-3 pt-2 " type="password" placeholder="***">
+              <input class="form-control mb-3 pt-2 " type="password" placeholder="***" formControlName="cvv">
             </div>
           </div>
           <div class="col-12">
-            <div class="btn btn-primary mb-3" [routerLink]="['/OrderConfirmed']">
+            <button class="btn btn-primary mb-3" type="submit">
               <span class="ps-3">PAY {{total}} </span>
               <span class="fas fa-arrow-right"></span>
-            </div>
+            </button>
           </div>
         </div>
+      </form>
       </div>
 
 

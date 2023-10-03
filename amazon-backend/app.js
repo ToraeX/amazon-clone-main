@@ -281,9 +281,7 @@ app.post("/AddtoCart", async (req, res) => {
     if(result){
       res.json(true);
     }
-  }
-
- 
+  } 
 });
 
 
@@ -329,6 +327,16 @@ app.post('/removeCart',(req,res)=> {
 
 app.post('/emptyCart',(req,res)=> {
   const results = db.emptyCart(req.body.id);
+  if(results){
+    res.json(true);
+  }else{
+    res.json(false);
+  }
+});
+
+app.post('/savePayment',(req,res)=> {
+  const obj = req.body.data;
+  const results = db.savePayment(obj);
   if(results){
     res.json(true);
   }else{
