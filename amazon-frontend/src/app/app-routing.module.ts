@@ -9,6 +9,8 @@ import { SellerComponent } from './seller/seller.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component';
+import { OrderPlacedComponent } from './order-placed/order-placed.component';
+import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 
 const routes: Routes = [
   {path : '',component : ContentComponent},
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path : 'seller',component : SellerComponent},
   {path : 'seller/addProducts',component : AddProductsComponent},
   {path : 'checkout',component : CheckoutComponent},
-  {path :  'ProceedToBuy' , component : ProceedToBuyComponent}
+  {path : 'ProceedToBuy' , component : ProceedToBuyComponent},
+  {path : 'OrderPlaced' , component: OrderPlacedComponent},
+  {path : 'OrderConfirmed', component: OrderConfirmedComponent}
 
   
 ];

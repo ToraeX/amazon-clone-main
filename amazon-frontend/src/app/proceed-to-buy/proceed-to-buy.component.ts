@@ -20,7 +20,9 @@ export class ProceedToBuyComponent implements OnInit {
     pincode: new FormControl(''),
     city: new FormControl(''),
     state: new FormControl(''),
+    checked : new FormControl(Boolean)
   });
+  arrSelectedAddress = [];
   userObject: any = JSON.parse(localStorage.getItem('userData'));
   isAddressAdded = false;
   addresses: any = [];
@@ -39,6 +41,12 @@ export class ProceedToBuyComponent implements OnInit {
     // if(this.isAddressAdded){
 
     // }
+  }
+
+  validateAddress(event:any,addressObj){
+    localStorage.setItem('address',JSON.stringify(addressObj));
+
+  
   }
 
   getcartproducts() {
@@ -66,6 +74,7 @@ export class ProceedToBuyComponent implements OnInit {
   }
 
   saveAddress() {
+
     var object = {
       name: this.AddressNew.controls.name.value,
       mob: this.AddressNew.controls.mob.value,

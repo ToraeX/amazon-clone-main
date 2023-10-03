@@ -16,6 +16,8 @@ import { SellerComponent } from './seller/seller.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component';
+import { OrderPlacedComponent } from './order-placed/order-placed.component';
+import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 
 
 
@@ -32,7 +34,9 @@ import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component
     SellerComponent,
     AddProductsComponent,
     CheckoutComponent,
-    ProceedToBuyComponent
+    ProceedToBuyComponent,
+    OrderPlacedComponent,
+    OrderConfirmedComponent
   ],
   imports: [
     BrowserModule,

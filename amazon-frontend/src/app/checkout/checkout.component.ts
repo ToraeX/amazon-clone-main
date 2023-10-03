@@ -15,6 +15,7 @@ export class CheckoutComponent implements OnInit{
   constructor(private seller : SellerService ,private userService:UserServiceService){
 
   }
+  
   ngOnInit(): void {
     this.getcartproducts();
   }
