@@ -33,5 +33,10 @@ export class SellerService {
   getcartproducts(){
     return this.http.get('http://localhost:3000/getcartproducts')
   }
+   
+  OrderConfirmed(data : any){
+    return this.http.post('http://localhost:3000/OrderConfirmed',{data})
+  }
   
+
 }

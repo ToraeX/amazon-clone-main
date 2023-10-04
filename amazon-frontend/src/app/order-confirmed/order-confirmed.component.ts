@@ -8,29 +8,37 @@ import { SellerService } from '../services/seller.service';
   styleUrls: ['./order-confirmed.component.css'],
 })
 export class OrderConfirmedComponent implements OnInit {
-  cartproducts: any = [];
-  total: any = 0;
-  FinalAddress: any = [];
+  addressDetails = JSON.parse(localStorage.getItem('address'));
+  userData;
+  sessionId = localStorage.getItem('sessionId');
+  productObject: any = [];
+  orderDetails: any = [];
   constructor(
     private seller: SellerService,
-    private userService: UserServiceService,
+    private user: UserServiceService
   ) {}
+
   ngOnInit(): void {
-    this.getcartproducts();
-    console.log(this.getcartproducts);
+    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.OrderConfirmed();
   }
 
-  getcartproducts() {
-    this.seller.getcartproducts().subscribe((data) => {
+  OrderConfirmed() {
+    let obj = {
+      addressId: this.addressDetails.id,
+      sessionId: this.sessionId,
+      userId: this.userData.id,
+    };
+    this.seller.OrderConfirmed(obj).subscribe((data: any) => {
       if (data) {
-        let finalTotal = 0;
-        this.cartproducts = data;
-        this.cartproducts.forEach((element) => {
-          if (element.hasOwnProperty('price')) {
-            finalTotal += element.price * element.quantity;
-          }
+        this.orderDetails = data[0];
+        let obj = {
+          productId: this.orderDetails.product_id,
+        };
+        this.user.getProductFromOrderTables(obj).subscribe((res: any) => {
+          this.productObject = res;
+          console.log({res});
         });
-        this.total = finalTotal;
       }
     });
   }

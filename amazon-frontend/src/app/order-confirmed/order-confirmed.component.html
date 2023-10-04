@@ -4,30 +4,31 @@
         <div class="col-2 d-flex mx-auto"> </div>
     </div>
     <div class="title mx-auto"> Thank you for your order! </div>
-    <div class="main"> <span id="sub-title">
+    
+    <div class="main"> <span id="sub-title" >
             <p><b>Payment Summary</b></p>
         </span>
-
-
-        <div class="row row-main" *ngFor="let item of cartproducts">
-            <div class="col-3"> <img class="img-fluid" src="{{item.image_url}}"> </div>
+        <div class="row row-main"  *ngFor="let order of orderDetails">
+            <div class="col-3"> <img class="img-fluid"
+            src="https://images.unsplash.com/photo-1580910051074-3eb694886505?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob25lfGVufDB8fDB8fHww&w=1000&q=80">
+            </div>
             <div class="col-6">
                 <div class="row d-flex">
-                    <p><b>{{item.product_name}}</b></p>
+                    <p><b>{{order.order_id}}</b></p>
                 </div>
                 <div class="row d-flex">
                     <p class="text-muted">128GB White</p>
                 </div>
             </div>
             <div class="col-3 d-flex justify-content-end">
-                <p><b>{{item.price}}</b></p>
+                <p><b>gta2</b></p>
             </div>
         </div>
         <hr>
         <div class="total">
             <div class="row">
-                <div class="col"> <b> Total:</b> </div>
-                <div class="col d-flex justify-content-end"> <b>{{total}}</b> </div>
+                <div class="col"> <b>Total Price</b> </div>
+                <div class="col d-flex justify-content-end"> <b>gta3</b> </div>
             </div> <button class="btn d-flex mx-auto"> Find more Products </button>
         </div>
     </div>

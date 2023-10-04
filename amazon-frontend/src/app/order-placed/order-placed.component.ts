@@ -13,6 +13,7 @@ export class OrderPlacedComponent implements OnInit {
   cartproducts: any = [];
   total: any = 0;
   FinalAddress: any = [];
+  userData : any = [];
   PaymentForm = new FormGroup({
     name: new FormControl(),
     cardNumber: new FormControl(),
@@ -26,6 +27,8 @@ export class OrderPlacedComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.FinalAddress = JSON.parse(localStorage.getItem('address'));
+    this.userData = JSON.parse(localStorage.getItem('userData'));
+    console.log(this.userData);
     console.log(this.FinalAddress);
     this.getcartproducts();
     console.log(this.getcartproducts);
@@ -54,15 +57,18 @@ export class OrderPlacedComponent implements OnInit {
       expiry: expiry.value,
       cvv: cvv.value,
       address: this.FinalAddress.id,
+      userId : this.userData.id
     };
     this.user.savePayment(obj).subscribe(
-      (response) => {
+      (response:any) => {
         if (response) {
           alert('Order Placed successfully');
+          if(response.hasOwnProperty('sessionId')){
+            localStorage.setItem('sessionId' ,response.sessionId)
+          }
           setTimeout(() => {
-            this.router.navigateByUrl('/OrderConfirmed');  
+            this.router.navigateByUrl('/OrderConfirmed');
           }, 1000);
-          
         }
       },
       (error) => {

@@ -23,8 +23,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
    // this.getcartproducts()
-    //console.log(this.userLoggedIn)  
+     
      this.user = JSON.parse(localStorage.getItem('userData'));
+     console.log(this.user);
     
     if(this.user){
       this.userLoggedIn = true;
