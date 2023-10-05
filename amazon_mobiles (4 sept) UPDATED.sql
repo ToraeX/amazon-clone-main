@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2023 at 10:00 PM
+-- Generation Time: Oct 05, 2023 at 11:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -48,7 +48,8 @@ CREATE TABLE `address` (
 INSERT INTO `address` (`id`, `country_id`, `name`, `mobileNumber`, `area`, `landmark`, `address`, `pincode`, `city`, `state`, `user_id`) VALUES
 (1, 1, 'Pratik', '9766600939', 'H.no 1277 Model Town ', 'Bezonbagh', 'Near Laal school', 440014, 'Nagpur', 'Maharashtra', 13),
 (2, 1, 'Nicky', '9766600939', 'H.no 1277 Model Town', 'Bezonbagh', 'Near Laal school', 440014, 'Nagpur', 'Maharashtra', 13),
-(3, 1, 'Saurabh', '7661945890', 'H.no 76544  Model Town', 'Bezonbagh', 'Bezonbagh', 440014, 'Nagpur', 'Maharashtra', 13);
+(3, 1, 'Saurabh', '7661945890', 'H.no 76544  Model Town', 'Bezonbagh', 'Bezonbagh', 440014, 'Nagpur', 'Maharashtra', 13),
+(8, 1, 'yash', '766589472', 'Near guitar shop', 'vice city', 'malibu club', 440004, 'punjab', 'C', 0);
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,8 @@ CREATE TABLE `cart` (
   `quantity` int(11) NOT NULL,
   `product_name` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
-  `image_url` text NOT NULL
+  `image_url` text NOT NULL,
+  `session_id` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -120,20 +122,19 @@ CREATE TABLE `orders` (
   `card_number` varchar(20) NOT NULL,
   `expiry_date` varchar(7) NOT NULL,
   `cvv` int(3) NOT NULL,
-  `order_date` datetime NOT NULL DEFAULT current_timestamp()
+  `order_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(11) NOT NULL,
+  `session_id` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `order_number`, `product_id`, `total_price`, `address_id`, `payee_name`, `payment_mode`, `card_number`, `expiry_date`, `cvv`, `order_date`) VALUES
-(1, 'AWC-1-LNS9-4-9-2023', '3,4,6', 217988, 2, 'rinku', 'Online', '4646464', '23/23', 565, '2023-10-04 01:23:53'),
-(2, 'AWC-2-FXR8-4-9-2023', '3,4,6', 217988, 2, 'rinku', 'Online', '4646464', '23/23', 565, '2023-10-04 01:24:20'),
-(3, 'AWC-3-S03S-4-9-2023', '3,4,6', 217988, 2, 'rinku', 'Online', '4646464', '23/23', 565, '2023-10-04 01:25:40'),
-(4, 'AWC-4-HHAG-4-9-2023', '3,4,6', 217988, 2, 'rinku', 'Online', '4646464', '23/23', 565, '2023-10-04 01:26:01'),
-(5, 'AWC-5-LQFP-4-9-2023', '3,4,6', 217988, 2, 'rinku', 'Online', '4646464', '23/23', 565, '2023-10-04 01:27:38'),
-(6, 'AWC-6-JHKV-4-9-2023', '2,3,5', 196997, 2, 'Nicky', 'Online', '123456789', '02/23', 456, '2023-10-04 01:29:47');
+INSERT INTO `orders` (`order_id`, `order_number`, `product_id`, `total_price`, `address_id`, `payee_name`, `payment_mode`, `card_number`, `expiry_date`, `cvv`, `order_date`, `user_id`, `session_id`) VALUES
+(1, 'AWC-1-XXTH-5-9-2023', '3,2', 121998, 3, 'pratik', 'Online', '123456789', '02/23', 456, '2023-10-05 00:31:11', 13, 'WDFW'),
+(2, 'AWC-2-W07N-5-9-2023', '2,6,7', 234578, 8, 'pratik', 'Online', '123456', '45/23', 858, '2023-10-05 01:04:27', 13, 'KJPJ'),
+(3, 'AWC-3-HXU0-5-9-2023', '3,4', 142989, 8, 'snu', 'Online', '876646', '02/23', 569, '2023-10-05 01:07:22', 13, 'XXZD');
 
 -- --------------------------------------------------------
 
@@ -315,7 +316,7 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -339,7 +340,7 @@ ALTER TABLE `country_master`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products_seller_info`
