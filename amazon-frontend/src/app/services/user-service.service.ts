@@ -45,6 +45,10 @@ getProductFromOrderTables(obj:any){
   return this.http.post('http://localhost:3000/getProductFromOrderTables',{data : obj})
 }
 
+searchProducts(obj:any){
+  return this.http.post('http://localhost:3000/searchProducts',{data : obj});
+}
+
 
 
 

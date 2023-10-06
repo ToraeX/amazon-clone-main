@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input,SimpleChanges,OnChanges} from '@angular/core';
 import { Router } from '@angular/router';
 import { SellerService } from '../services/seller.service';
 import { UserServiceService } from '../services/user-service.service';
@@ -11,14 +11,18 @@ import { Conditional } from '@angular/compiler';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit ,OnChanges{
   @Input() cartObject;
   userLoggedIn:any = false;
   user :any;
   cartproducts: any =[];
   total : any = 0;
+  searchString : string;
   constructor(private router:Router ,private seller:SellerService,private userService :UserServiceService){
 
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log({changes});
   }
 
   ngOnInit(): void {
@@ -75,5 +79,12 @@ export class HeaderComponent implements OnInit {
         alert('item removed from cart');
       }
     })
+  }
+  searchProducts(event:any){
+    this.searchString = event.target.value;
+    this.userService.searchProducts(this.searchString).subscribe((res) => {
+      localStorage.setItem('searchProducts',JSON.stringify(this.searchString));
+
+    });
   }
 }

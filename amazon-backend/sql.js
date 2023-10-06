@@ -231,7 +231,7 @@ getSellers = () => {
 
 OrderConfirmed = (obj) => {
   return new Promise((resolve, reject) => {
-    var sql = `SELECT * FROM orders WHERE session_id = '${obj.sessionId}' and user_id = '${obj.userId}' and address_id = '${obj.addressId}'`;       
+    var sql = `SELECT * FROM orders WHERE session_id = '${obj.sessionId}' and user_id = '${obj.userId}' and address_id = '${obj.addressId}'`;
     console.log(sql);
     connection.query(sql, (error, results, fields) => {
       if (error) {
@@ -297,7 +297,7 @@ savePayment = (obj) => {
     const isOrderCreated = await createOrder(product_ids, total_price, obj);
     if (isOrderCreated) {
       const session_id = await updateOrderNumber();
-      console.log('session_id',session_id);
+      console.log("session_id", session_id);
       if (session_id) {
         let isCartDeleted = await emptyCart();
         if (isCartDeleted) {
@@ -337,7 +337,7 @@ updateOrderNumber = () => {
     let OrderNumber = `${orgCode}-${tableId}-${randNumber}-${dateformat}`;
     let session_id = generateString(4);
     let cartUpdate = await updateCartSessionId(session_id);
-    if(cartUpdate){
+    if (cartUpdate) {
       var sql = `UPDATE orders SET order_number = '${OrderNumber}' , session_id = '${session_id}'  WHERE order_id =  '${tableId}'`;
       connection.query(sql, (error, results, fields) => {
         // if any errors
@@ -349,7 +349,6 @@ updateOrderNumber = () => {
         }
       });
     }
-   
   });
 };
 updateCartSessionId = (session_id) => {
@@ -364,7 +363,7 @@ updateCartSessionId = (session_id) => {
       }
     });
   });
-}
+};
 
 generateDate = () => {
   let objectDate = new Date();
@@ -416,7 +415,6 @@ getProductIdsFromCart = () => {
   });
 };
 
-
 getProductFromOrderTables = (obj) => {
   return new Promise((resolve, reject) => {
     const sql = `SELECT * FROM products_seller_info WHERE product_id IN (${obj.productId});`;
@@ -430,6 +428,22 @@ getProductFromOrderTables = (obj) => {
     });
   });
 };
+
+searchProducts = (productName) => {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT * FROM products_seller_info WHERE product_name LIKE '%${productName}%';`;
+    console.log(sql)
+    connection.query(sql, (error, results, fields) => {
+      if (error) {
+        throw error;
+        resolve(false);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
 
 
 module.exports = {
@@ -452,5 +466,6 @@ module.exports = {
   addSeller,
   OrderConfirmed,
   login,
-  getProductFromOrderTables
+  getProductFromOrderTables,
+  searchProducts
 };

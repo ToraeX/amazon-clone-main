@@ -55,7 +55,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.post("/login", async(req, res) => {
+app.post("/login", async (req, res) => {
   const obj = req.body.data;
   const results = await db.login(obj);
   if (results.length) {
@@ -75,9 +75,9 @@ app.post("/address", async (req, res) => {
   }
 });
 
-app.post("/addProducts", (req, res) => {
+app.post("/addProducts", async (req, res) => {
   const obj = req.body.data;
-  const results = db.addProducts(obj);
+  const results = await db.addProducts(obj);
   if (results) {
     res.json(true);
   } else {
@@ -105,8 +105,8 @@ app.post("/AddtoCart", async (req, res) => {
   }
 });
 
-app.post("/removeCart", (req, res) => {
-  const results = db.removeCart(req.body.id);
+app.post("/removeCart", async (req, res) => {
+  const results = await db.removeCart(req.body.id);
   if (results) {
     res.json(true);
   } else {
@@ -114,8 +114,8 @@ app.post("/removeCart", (req, res) => {
   }
 });
 
-app.post("/emptyCart", (req, res) => {
-  const results = db.emptyCart(req.body.id);
+app.post("/emptyCart", async (req, res) => {
+  const results = await db.emptyCart(req.body.id);
   if (results) {
     res.json(true);
   } else {
@@ -127,9 +127,9 @@ app.post("/savePayment", async (req, res) => {
   const obj = req.body.data;
   const session = await db.savePayment(obj);
   let response = {
-    success : true,
-    sessionId : session
-  }
+    success: true,
+    sessionId: session,
+  };
   if (response) {
     res.json(response);
   } else {
@@ -224,6 +224,16 @@ app.post("/getProductFromOrderTables", async (req, res) => {
   }
 });
 
+app.post("/searchProducts", async (req, res) => {
+  const productName = req.body.data;
+  console.log(productName);
+  const results = await db.searchProducts(productName);
+  if (results.length > 0) {
+    res.json(results);
+  } else {
+    res.json(false);
+  }
+});
 
 // to run the server
 app.listen(3000, () => {

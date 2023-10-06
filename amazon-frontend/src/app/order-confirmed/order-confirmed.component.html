@@ -1,34 +1,34 @@
 <div class="card mt-50 mb-50 alert alert-success">
-    <div class="col d-flex"><span class="text-muted" id="orderno">order #546924</span></div>
-    <div class="gap">
+   <div class="gap">
         <div class="col-2 d-flex mx-auto"> </div>
     </div>
     <div class="title mx-auto"> Thank you for your order! </div>
+    <div class="col d-flex justify-content-center mb-50"><span class="h3" id="orderno">order Number-{{orderDetails.order_number}}</span></div>
     
     <div class="main"> <span id="sub-title" >
             <p><b>Payment Summary</b></p>
         </span>
-        <div class="row row-main" >
+        <div class="row row-main" *ngFor="let product of productObject" >
             <div class="col-3"> <img class="img-fluid"
-            src="https://images.unsplash.com/photo-1580910051074-3eb694886505?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob25lfGVufDB8fDB8fHww&w=1000&q=80">
+            src="{{product.image_path}}">
             </div>
             <div class="col-6">
                 <div class="row d-flex">
-                    <p><b>gta</b></p>
+                    <p><b>{{product.product_name}}</b></p>
                 </div>
                 <div class="row d-flex">
-                    <p class="text-muted">128GB White</p>
+                <p class="text-muted">{{product.specifications.slice(0,95)}}</p>
                 </div>
             </div>
             <div class="col-3 d-flex justify-content-end">
-                <p><b>gta2</b></p>
+                <p><b>{{product.price}}</b></p>
             </div>
         </div>
         <hr>
         <div class="total">
             <div class="row">
                 <div class="col"> <b>Total Price</b> </div>
-                <div class="col d-flex justify-content-end"> <b>gta3</b> </div>
+                <div class="col d-flex justify-content-end"> <b>{{orderDetails.total_price}}</b> </div>
             </div> <button class="btn d-flex mx-auto"> Find more Products </button>
         </div>
     </div>

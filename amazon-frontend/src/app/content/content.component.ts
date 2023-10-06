@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit ,SimpleChanges,OnChanges} from '@angular/core';
 import { SellerService } from '../services/seller.service';
 
 @Component({
@@ -6,12 +6,18 @@ import { SellerService } from '../services/seller.service';
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit, OnChanges {
   arrResponse :any = [];
+  arrSearchProducts :any = [];
   constructor(private seller:SellerService){
 
   }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
   ngOnInit(): void {
+    this.arrSearchProducts = JSON.parse(localStorage.getItem('searchProducts'));
+    console.log('local',this.arrSearchProducts);
     this.seller.getProducts().subscribe(data => {
       if(data) {
         this.arrResponse = data;
