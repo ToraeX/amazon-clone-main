@@ -1,6 +1,14 @@
-import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  SimpleChanges,
+  OnChanges,
+  Input,
+} from '@angular/core';
 import { SellerService } from '../services/seller.service';
+import { UserServiceService } from '../services/user-service.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-content',
@@ -8,35 +16,39 @@ import { Router } from '@angular/router';
   styleUrls: ['./content.component.css'],
 })
 export class ContentComponent implements OnInit, OnChanges {
+  @Input() isChange: boolean;
   arrResponse: any = [];
-  searchText = '';
   arrSearchProducts: any = [];
-  constructor(private seller: SellerService, private router: Router) {}
+  isSearchClicked;
+  constructor(
+    private seller: SellerService,
+    public userService: UserServiceService,
+    private router : Router
+
+  ) {}
   ngOnChanges(changes: SimpleChanges) {
-    console.log({changes});
+    console.log({ changes });
   }
   ngOnInit(): void {
-    this.arrSearchProducts = JSON.parse(localStorage.getItem('searchProducts'));
-    console.log('local', this.arrSearchProducts);
     this.seller.getProducts().subscribe((data) => {
       if (data) {
         this.arrResponse = data;
         console.log(this.arrResponse);
       }
     });
-  }
 
-  productPage(id){
-    this.router.navigate(["/productpage/"+ id])
-  }
-  
-  // checksearchtext() {
-  //   console.log(this.searchText);
-  // }
+    // check if search is done
+    this.userService.shareString.subscribe((x) => {
+      this.isSearchClicked = x;
+    });
 
-  // navigateToProduct() {
-  //   this.router.navigate(['/productpage']);
-  // }
+    this.userService.share.subscribe((x) => {
+      if (this.isSearchClicked) {
+        this.arrSearchProducts = x;
+      }
+      console.log('Value', this.arrSearchProducts);
+    });
+  }
 
   addToCart(data: any) {
     console.log(data);
@@ -47,7 +59,6 @@ export class ContentComponent implements OnInit, OnChanges {
       price: data.price,
       image_url: data.image_path,
       quantity: data.quantity,
-      
     };
 
     this.seller.addtocart(object).subscribe((data) => {
@@ -55,5 +66,8 @@ export class ContentComponent implements OnInit, OnChanges {
         alert(`product added to cart`);
       }
     });
+  }
+  productPage(id) {
+    this.router.navigate(['/productpage/' + id]);
   }
 }
