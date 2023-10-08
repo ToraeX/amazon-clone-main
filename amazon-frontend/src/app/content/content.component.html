@@ -13,7 +13,7 @@
         alt="..."
       />
     </div>
-  
+
     <div class="carousel-item">
       <img
         src="https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-camera-system-230912_big.jpg.large.jpg"
@@ -23,14 +23,21 @@
       />
     </div>
   </div>
-  
 
   <div class="container mt-5">
     <div class="ratio ratio-16x9">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/xqyUdNxWazA?si=DvU65WsfwAUmUG92" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/xqyUdNxWazA?si=DvU65WsfwAUmUG92"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
     </div>
   </div>
-  
+
   <button
     class="carousel-control-prev"
     type="button"
@@ -53,30 +60,53 @@
 <!-- carousel -->
 
 <!-- content -->
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="arrSearchProducts.length == 0">
   <div class="row">
-    <div class="col mt-5" *ngFor="let item of arrResponse;">
-      <div class="card" style="width: 18rem" >
-        <img
-          src="{{item.image_path}}"
-          class="card-img-top"
-          alt="..."
-        />
+    <div class="col mt-5" *ngFor="let item of arrResponse">
+      <div class="card" style="width: 18rem">
+        <img src="{{ item.image_path }}" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{item.product_name}}</h5>
+          <h5 class="card-title">{{ item.product_name }}</h5>
           <p class="card-text">
-           {{item.specifications | slice:0:150}}
+            {{ item.specifications | slice : 0 : 150 }}
           </p>
           <a href="#" class="btn btn-primary m-2">Buy Now</a>
-          <a class="btn btn-danger"
+          <a
+            class="btn btn-danger"
             data-bs-toggle="mymodal"
-            data-bs-target="#AddToCart" (click) ="addToCart(item)"
+            data-bs-target="#AddToCart"
+            (click)="addToCart(item)"
             >Add to Cart</a
           >
         </div>
       </div>
     </div>
-    
+  </div>
+</div>
+<!-- content -->
+
+<!-- content -->
+<div class="container mt-5" *ngIf="arrSearchProducts.length > 0">
+  <div class="row">
+    <div class="col mt-5" *ngFor="let item of arrSearchProducts">
+      <div class="card" style="width: 18rem">
+        <img src="{{ item.image_path }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{ item.product_name }}</h5>
+          <p class="card-text">
+            {{ item.specifications | slice : 0 : 150 }}
+          </p>
+          <a href="#" class="btn btn-primary m-2">Buy Now</a>
+          <a
+            class="btn btn-danger"
+            data-bs-toggle="mymodal"
+            data-bs-target="#AddToCart"
+            (click)="addToCart(item)"
+            >Add to Cart</a
+          >
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <!-- content -->

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { SellerService } from '../services/seller.service';
 import { UserServiceService } from '../services/user-service.service';
 import { Conditional } from '@angular/compiler';
+import { takeUntil } from 'rxjs/operators';
+
 
 
 
@@ -81,10 +83,14 @@ export class HeaderComponent implements OnInit ,OnChanges{
     })
   }
   searchProducts(event:any){
+    
+    
     this.searchString = event.target.value;
-    this.userService.searchProducts(this.searchString).subscribe((res) => {
-      localStorage.setItem('searchProducts',JSON.stringify(this.searchString));
-
-    });
+    
+      this.userService.searchProducts(this.searchString).subscribe((res) => {
+        this.userService.updateData(res);
+        this.userService.updateSearch(true);
+      });
+    
   }
 }

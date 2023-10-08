@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject} from 'rxjs'; 
 
 
 
@@ -9,6 +10,21 @@ import { HttpClient } from '@angular/common/http';
 export class UserServiceService {
 
   constructor(private http: HttpClient) { }
+
+  public content = new BehaviorSubject<any>([]);
+  public share = this.content.asObservable();
+  
+  private isSearched = new BehaviorSubject<Boolean>(false);
+  public shareString = this.isSearched.asObservable();
+  updateData(data){
+    if(data){
+      this.content.next(data);
+    }
+    
+  }
+  updateSearch(string){
+    this.isSearched.next(string);
+  }
 
   registerUser(data : any){
     return this.http.post('http://localhost:3000/register',{data})

@@ -1,5 +1,6 @@
-import { Component,OnInit ,SimpleChanges,OnChanges} from '@angular/core';
+import { Component,OnInit ,SimpleChanges,OnChanges, Input} from '@angular/core';
 import { SellerService } from '../services/seller.service';
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-content',
@@ -7,23 +8,38 @@ import { SellerService } from '../services/seller.service';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit, OnChanges {
+  @Input() isChange : boolean;
   arrResponse :any = [];
   arrSearchProducts :any = [];
-  constructor(private seller:SellerService){
+  isSearchClicked ;
+  constructor(private seller:SellerService, public userService : UserServiceService){
 
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+    console.log({changes});
   }
   ngOnInit(): void {
-    this.arrSearchProducts = JSON.parse(localStorage.getItem('searchProducts'));
-    console.log('local',this.arrSearchProducts);
+    
     this.seller.getProducts().subscribe(data => {
       if(data) {
         this.arrResponse = data;
         console.log(this.arrResponse)
       }
-    })
+    });
+
+    // check if search is done
+    this.userService.shareString.subscribe(x => {
+      this.isSearchClicked = x;
+      
+    });
+    
+
+    this.userService.share.subscribe((x) => {
+      if(this.isSearchClicked){
+        this.arrSearchProducts = x
+      }
+      console.log('Value',this.arrSearchProducts);
+    }); 
   }  
 
   addToCart(data:any){
