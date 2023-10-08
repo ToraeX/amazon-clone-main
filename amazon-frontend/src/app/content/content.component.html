@@ -60,48 +60,26 @@
 <!-- carousel -->
 
 <!-- content -->
-<div class="container mt-5" *ngIf="arrSearchProducts.length == 0">
+<!-- <input type="text" [(ngModel)]="searchText" (change)="checksearchtext()" placeholder="search"> -->
+<div class="container mt-5">
   <div class="row">
     <div class="col mt-5" *ngFor="let item of arrResponse">
-      <div class="card" style="width: 18rem">
-        <img src="{{ item.image_path }}" class="card-img-top" alt="..." />
+      <div class="card" style="width: 18rem" >
+        <img
+        src="{{ item.image_path }}"
+        class="card-img-top"
+        alt="..."
+        (click)="productPage(item.product_id)"
+      />
+      
         <div class="card-body">
           <h5 class="card-title">{{ item.product_name }}</h5>
           <p class="card-text">
             {{ item.specifications | slice : 0 : 150 }}
           </p>
           <a href="#" class="btn btn-primary m-2">Buy Now</a>
-          <a
-            class="btn btn-danger"
-            data-bs-toggle="mymodal"
-            data-bs-target="#AddToCart"
-            (click)="addToCart(item)"
-            >Add to Cart</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- content -->
-
-<!-- content -->
-<div class="container mt-5" *ngIf="arrSearchProducts.length > 0">
-  <div class="row">
-    <div class="col mt-5" *ngFor="let item of arrSearchProducts">
-      <div class="card" style="width: 18rem">
-        <img src="{{ item.image_path }}" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">{{ item.product_name }}</h5>
-          <p class="card-text">
-            {{ item.specifications | slice : 0 : 150 }}
-          </p>
-          <a href="#" class="btn btn-primary m-2">Buy Now</a>
-          <a
-            class="btn btn-danger"
-            data-bs-toggle="mymodal"
-            data-bs-target="#AddToCart"
-            (click)="addToCart(item)"
+          <a class="btn btn-danger"
+            (click) ="addToCart(item)"
             >Add to Cart</a
           >
         </div>

@@ -147,10 +147,6 @@ app.post("/saveAddress", async (req, res) => {
   }
 });
 
-//////////////////////
-//GET
-/////////////////////
-
 app.post("/OrderConfirmed", async (req, res) => {
   const obj = req.body.data;
   const results = await db.OrderConfirmed(obj);
@@ -160,6 +156,10 @@ app.post("/OrderConfirmed", async (req, res) => {
     res.json(false);
   }
 });
+
+//////////////////////
+//GET
+/////////////////////
 
 app.get("/getSellers", async (req, res) => {
   const results = await db.getSellers();
@@ -181,6 +181,16 @@ app.get("/getBrands", async (req, res) => {
 
 app.get("/getProducts", async (req, res) => {
   const results = await db.getProducts();
+  if (results.length > 0) {
+    res.json(results);
+  } else {
+    res.json(false);
+  }
+});
+
+app.get("/getSingleProduct/:id", async (req, res) => {
+  const id = req.params.id;
+  const results = await db.getSingleProduct(id);
   if (results.length > 0) {
     res.json(results);
   } else {

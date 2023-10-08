@@ -11,6 +11,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component';
 import { OrderPlacedComponent } from './order-placed/order-placed.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 const routes: Routes = [
   {path : '',component : ContentComponent},
@@ -23,8 +24,8 @@ const routes: Routes = [
   {path : 'checkout',component : CheckoutComponent},
   {path : 'ProceedToBuy' , component : ProceedToBuyComponent},
   {path : 'OrderPlaced' , component: OrderPlacedComponent},
-  {path : 'OrderConfirmed', component: OrderConfirmedComponent}
-
+  {path : 'OrderConfirmed', component: OrderConfirmedComponent},
+  {path : 'productpage/:id' , component : ProductPageComponent}
   
 ];
 

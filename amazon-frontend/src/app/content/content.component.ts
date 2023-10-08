@@ -1,65 +1,59 @@
-import { Component,OnInit ,SimpleChanges,OnChanges, Input} from '@angular/core';
+import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { SellerService } from '../services/seller.service';
-import { UserServiceService } from '../services/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  styleUrls: ['./content.component.css'],
 })
 export class ContentComponent implements OnInit, OnChanges {
-  @Input() isChange : boolean;
-  arrResponse :any = [];
-  arrSearchProducts :any = [];
-  isSearchClicked ;
-  constructor(private seller:SellerService, public userService : UserServiceService){
-
-  }
+  arrResponse: any = [];
+  searchText = '';
+  arrSearchProducts: any = [];
+  constructor(private seller: SellerService, private router: Router) {}
   ngOnChanges(changes: SimpleChanges) {
     console.log({changes});
   }
   ngOnInit(): void {
-    
-    this.seller.getProducts().subscribe(data => {
-      if(data) {
+    this.arrSearchProducts = JSON.parse(localStorage.getItem('searchProducts'));
+    console.log('local', this.arrSearchProducts);
+    this.seller.getProducts().subscribe((data) => {
+      if (data) {
         this.arrResponse = data;
-        console.log(this.arrResponse)
+        console.log(this.arrResponse);
       }
     });
+  }
 
-    // check if search is done
-    this.userService.shareString.subscribe(x => {
-      this.isSearchClicked = x;
-      
-    });
-    
+  productPage(id){
+    this.router.navigate(["/productpage/"+ id])
+  }
+  
+  // checksearchtext() {
+  //   console.log(this.searchText);
+  // }
 
-    this.userService.share.subscribe((x) => {
-      if(this.isSearchClicked){
-        this.arrSearchProducts = x
-      }
-      console.log('Value',this.arrSearchProducts);
-    }); 
-  }  
+  // navigateToProduct() {
+  //   this.router.navigate(['/productpage']);
+  // }
 
-  addToCart(data:any){
-    console.log(data)
-    var object ={
-      user_id:1,
-      product_id : data.product_id,
+  addToCart(data: any) {
+    console.log(data);
+    var object = {
+      user_id: 1,
+      product_id: data.product_id,
       product_name: data.product_name,
       price: data.price,
-      image_url:data.image_path,
-      quantity:data.quantity
-    }
+      image_url: data.image_path,
+      quantity: data.quantity,
+      
+    };
 
-    this.seller.addtocart(object).subscribe(data => {
-      if(data) {
-        
+    this.seller.addtocart(object).subscribe((data) => {
+      if (data) {
         alert(`product added to cart`);
       }
-    })
-  
-
+    });
   }
 }

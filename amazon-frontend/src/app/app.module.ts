@@ -18,6 +18,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component';
 import { OrderPlacedComponent } from './order-placed/order-placed.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
+import { ProductPageComponent } from './product-page/product-page.component';
+
 
 
 
@@ -36,7 +38,8 @@ import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.compo
     CheckoutComponent,
     ProceedToBuyComponent,
     OrderPlacedComponent,
-    OrderConfirmedComponent
+    OrderConfirmedComponent,
+    ProductPageComponent, 
   ],
   imports: [
     BrowserModule,

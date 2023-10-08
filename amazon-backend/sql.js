@@ -275,6 +275,21 @@ getProducts = () => {
   });
 };
 
+getSingleProduct = (id) => {
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT * FROM products_seller_info WHERE product_id = ${id}`;
+    connection.query(sql, (error, results, fields) => {
+      if (error) {
+        throw error;
+        resolve(false);
+      } else {
+        console.log({ results });
+        resolve(results);
+      }
+    });
+  });
+};
+
 getcartproducts = () => {
   return new Promise((resolve, reject) => {
     var sql = `SELECT * FROM cart`;
@@ -432,7 +447,7 @@ getProductFromOrderTables = (obj) => {
 searchProducts = (productName) => {
   return new Promise((resolve, reject) => {
     const sql = `SELECT * FROM products_seller_info WHERE product_name LIKE '%${productName}%';`;
-    console.log(sql)
+    console.log(sql);
     connection.query(sql, (error, results, fields) => {
       if (error) {
         throw error;
@@ -443,8 +458,6 @@ searchProducts = (productName) => {
     });
   });
 };
-
-
 
 module.exports = {
   checkIsProductAdded,
@@ -467,5 +480,6 @@ module.exports = {
   OrderConfirmed,
   login,
   getProductFromOrderTables,
-  searchProducts
+  searchProducts,
+  getSingleProduct,
 };
