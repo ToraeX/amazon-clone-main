@@ -68,7 +68,6 @@ export class ProceedToBuyComponent implements OnInit {
     this.userService.getuserAddress().subscribe((data) => {
       if (data) {
         this.addresses = data;
-        console.log(data, 'address');
       }
     });
   }

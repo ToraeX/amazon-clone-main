@@ -231,7 +231,9 @@ getSellers = () => {
 
 OrderConfirmed = (obj) => {
   return new Promise((resolve, reject) => {
-    var sql = `SELECT * FROM orders WHERE session_id = '${obj.sessionId}' and user_id = '${obj.userId}' and address_id = '${obj.addressId}'`;
+    var sql = `SELECT a.*,b.address,b.name,b.landmark,b.area,b.pincode,b.city,b.state FROM orders a
+    INNER JOIN address b on a.address_id = b.id 
+    WHERE 1 and a.user_id = '${obj.userId}'`;
     console.log(sql);
     connection.query(sql, (error, results, fields) => {
       if (error) {
@@ -459,6 +461,9 @@ searchProducts = (productName) => {
   });
 };
 
+
+
+////EXPORTING MODULE////
 module.exports = {
   checkIsProductAdded,
   updateCartProduct,

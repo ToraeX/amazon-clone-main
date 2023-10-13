@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserServiceService } from '../services/user-service.service';
 import { SellerService } from '../services/seller.service';
 
 @Component({
-  selector: 'app-order-confirmed',
-  templateUrl: './order-confirmed.component.html',
-  styleUrls: ['./order-confirmed.component.css'],
+  selector: 'app-user-orders',
+  templateUrl: './user-orders.component.html',
+  styleUrls: ['./user-orders.component.css']
 })
-export class OrderConfirmedComponent implements OnInit {
+export class UserOrdersComponent {
   addressDetails = JSON.parse(localStorage.getItem('address'));
   userData;
   sessionId = localStorage.getItem('sessionId');
@@ -32,14 +32,12 @@ export class OrderConfirmedComponent implements OnInit {
 
     this.seller.OrderConfirmed(obj).subscribe((data: any) => {
       if (data) {
-        console.log(data,"orderDetails")
         this.orderDetails = data[0];
         let obj = {
           productId: this.orderDetails.product_id,
         };
         this.user.getProductFromOrderTables(obj).subscribe((res: any) => {
           this.productObject = res;
-          console.log({res},"productObject");
         });
       }
     });

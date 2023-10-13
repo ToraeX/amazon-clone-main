@@ -28,10 +28,10 @@ export class OrderPlacedComponent implements OnInit {
   ngOnInit(): void {
     this.FinalAddress = JSON.parse(localStorage.getItem('address'));
     this.userData = JSON.parse(localStorage.getItem('userData'));
-    console.log(this.userData);
-    console.log(this.FinalAddress);
+    
+    
     this.getcartproducts();
-    console.log(this.getcartproducts);
+    
   }
 
   getcartproducts() {
@@ -59,6 +59,7 @@ export class OrderPlacedComponent implements OnInit {
       address: this.FinalAddress.id,
       userId : this.userData.id
     };
+    
     this.user.savePayment(obj).subscribe(
       (response:any) => {
         if (response) {

@@ -73,8 +73,9 @@ export class RegisterComponent implements OnInit{
       alert('user not exists');
     }else{
       
+      this.user.setLogin(res[0]);
       localStorage.setItem('userData',JSON.stringify(res[0]));
-      //console.log( JSON.parse(localStorage.getItem('userData')));
+      console.log( JSON.parse(localStorage.getItem('userData')));
       setTimeout(()=> {
         this.router.navigate(['']);
       },1000)

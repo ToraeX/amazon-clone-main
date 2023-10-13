@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input,SimpleChanges,OnChanges} from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { SellerService } from '../services/seller.service';
 import { UserServiceService } from '../services/user-service.service';
 import { Conditional } from '@angular/compiler';
@@ -20,22 +20,34 @@ export class HeaderComponent implements OnInit ,OnChanges{
   cartproducts: any =[];
   total : any = 0;
   searchString : string;
+  isHomeRoute: boolean;
   constructor(private router:Router ,private seller:SellerService,private userService :UserServiceService){
+
+    this.router.events.subscribe((event: any) => { 
+      if (event instanceof NavigationEnd) {
+        this.isHomeRoute = this.router.url === '/';
+      }
+    });
 
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log({changes});
   }
 
   ngOnInit(): void {
    // this.getcartproducts()
+     this.userService.getLoginObject.subscribe(user => {
+      this.user = user;
+      console.log(this.router.url)
      
+      
+
+     })
      this.user = JSON.parse(localStorage.getItem('userData'));
-     console.log(this.user);
     
     if(this.user){
       this.userLoggedIn = true;
     }
+
 
   }
 
@@ -47,6 +59,9 @@ export class HeaderComponent implements OnInit ,OnChanges{
     
     
   }
+
+
+
   getcartproducts(){
     this.seller.getcartproducts().subscribe(data => {
       if(data) {

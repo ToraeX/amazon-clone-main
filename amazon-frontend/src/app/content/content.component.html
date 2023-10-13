@@ -64,8 +64,8 @@
   <div class="row">
     <div class="col mt-5" *ngFor="let item of arrResponse">
       <div class="card" style="width: 18rem">
-        <img src="{{ item.image_path }}" class="card-img-top" alt="..." (click)="productPage(item.product_id)"
-         />
+        <img src="{{ item.image_path }}" class="card-img-top " alt="..." (click)="productPage(item.product_id)"
+         style="cursor: pointer;"/> 
         <div class="card-body">
           <h5 class="card-title">{{ item.product_name }}</h5>
           <p class="card-text">
@@ -74,8 +74,8 @@
           <a href="#" class="btn btn-primary m-2">Buy Now</a>
           <a
             class="btn btn-danger"
-            data-bs-toggle="mymodal"
-            data-bs-target="#AddToCart"
+            data-bs-toggle="modal"
+            data-bs-target="#addToCartDiv"
             (click)="addToCart(item)"
             >Add to Cart</a
           >
@@ -91,8 +91,8 @@
   <div class="row">
     <div class="col mt-5" *ngFor="let item of arrSearchProducts">
       <div class="card" style="width: 18rem">
-        <img src="{{ item.image_path }}" class="card-img-top" alt="..." (click)="productPage(item.product_id)"
-        />
+        <img src="{{ item.image_path }}" class="card-img-top " alt="..." (click)="productPage(item.product_id)"
+        style="cursor: pointer;"/>
         <div class="card-body">
           <h5 class="card-title">{{ item.product_name }}</h5>
           <p class="card-text">
@@ -101,8 +101,8 @@
           <a href="#" class="btn btn-primary m-2">Buy Now</a>
           <a
             class="btn btn-danger"
-            data-bs-toggle="mymodal"
-            data-bs-target="#AddToCart"
+            data-bs-toggle="modal"
+            data-bs-target="#addToCartDiv"
             (click)="addToCart(item)"
             >Add to Cart</a
           >
@@ -112,3 +112,24 @@
   </div>
 </div>
 <!-- content -->
+
+<!-- Add to Cart Pop up -->
+<div class="modal" tabindex="-1" role="dialog" id="addToCartDiv">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add To Cart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Product has been added.</p>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
