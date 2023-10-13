@@ -33,7 +33,6 @@ export class ContentComponent implements OnInit, OnChanges {
     this.seller.getProducts().subscribe((data) => {
       if (data) {
         this.arrResponse = data;
-        console.log(this.arrResponse);
       }
     });
 
@@ -46,12 +45,11 @@ export class ContentComponent implements OnInit, OnChanges {
       if (this.isSearchClicked) {
         this.arrSearchProducts = x;
       }
-      console.log('Value', this.arrSearchProducts);
+      
     });
   }
 
   addToCart(data: any) {
-    console.log(data);
     var object = {
       user_id: 1,
       product_id: data.product_id,

@@ -16,14 +16,27 @@ export class UserServiceService {
   
   private isSearched = new BehaviorSubject<Boolean>(false);
   public shareString = this.isSearched.asObservable();
+
+  private isLoggin = new BehaviorSubject<any>([]);
+  public getLoginObject = this.isSearched.asObservable();
+
+  private showSearchBar = new BehaviorSubject<any>(false);
+  public getshowSearchBarObject = this.isSearched.asObservable();
+
   updateData(data){
     if(data){
       this.content.next(data);
     }
-    
   }
   updateSearch(string){
     this.isSearched.next(string);
+  }
+
+  setLogin(obj){
+    this.isLoggin.next(obj);
+  }
+  setSearchBar(obj){
+    this.showSearchBar.next(obj);
   }
 
   registerUser(data : any){

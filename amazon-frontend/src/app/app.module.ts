@@ -19,6 +19,7 @@ import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component
 import { OrderPlacedComponent } from './order-placed/order-placed.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 
 
@@ -39,7 +40,8 @@ import { ProductPageComponent } from './product-page/product-page.component';
     ProceedToBuyComponent,
     OrderPlacedComponent,
     OrderConfirmedComponent,
-    ProductPageComponent, 
+    ProductPageComponent,
+    UserOrdersComponent, 
   ],
   imports: [
     BrowserModule,

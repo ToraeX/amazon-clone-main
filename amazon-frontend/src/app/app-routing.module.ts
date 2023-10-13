@@ -12,6 +12,7 @@ import { ProceedToBuyComponent } from './proceed-to-buy/proceed-to-buy.component
 import { OrderPlacedComponent } from './order-placed/order-placed.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 const routes: Routes = [
   {path : '',component : ContentComponent},
@@ -25,8 +26,8 @@ const routes: Routes = [
   {path : 'ProceedToBuy' , component : ProceedToBuyComponent},
   {path : 'OrderPlaced' , component: OrderPlacedComponent},
   {path : 'OrderConfirmed', component: OrderConfirmedComponent},
-  {path : 'productpage/:id' , component : ProductPageComponent}
-  
+  {path : 'productpage/:id' , component : ProductPageComponent},
+  {path : 'userOrders' , component: UserOrdersComponent}
 ];
 
 @NgModule({

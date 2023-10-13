@@ -20,20 +20,10 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" [routerLink]="['']">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['']">Products</a>
-            </li>
+            
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['address']">Address</a>
             </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['']">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['']">Contact Us</a>
-            </li>
-
             <li class="nav-item" *ngIf="!userLoggedIn">
               <a class="nav-link" [routerLink]="['register']">Login</a>
             </li>
@@ -43,7 +33,7 @@
                 Hi {{user.name}}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" [routerLink]="['userOrders']">My Order Details</a></li>
                 <li><a class="dropdown-item" [routerLink]="['seller']">Seller Portal</a></li>
                 <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
               
@@ -96,7 +86,7 @@
             </li>
            
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" *ngIf="isHomeRoute">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" (keyup)="searchProducts($event)">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
