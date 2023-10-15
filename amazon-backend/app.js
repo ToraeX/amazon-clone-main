@@ -131,7 +131,12 @@ app.post("/savePayment", async (req, res) => {
     sessionId: session,
   };
   if (response) {
-    res.json(response);
+    const orderDetails = await db.getLastOrderDetail();
+    const email = await db.sendEmail(orderDetails);
+    console.log({email});
+    if(email){
+      res.json(response);
+    }
   } else {
     res.json(false);
   }

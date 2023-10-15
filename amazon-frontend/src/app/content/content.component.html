@@ -1,58 +1,33 @@
 <!-- carousel -->
-<div
-  id="carouselExampleControls"
-  class="container carousel slide"
-  data-bs-ride="carousel"
->
+<div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
         src="https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.xlarge.jpg"
-        class="d-block w-100"
-        height=""
-        alt="..."
-      />
+        class="d-block w-100" height="" alt="..." />
     </div>
 
     <div class="carousel-item">
       <img
         src="https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-camera-system-230912_big.jpg.large.jpg"
-        class="d-block w-100"
-        height=""
-        alt="..."
-      />
+        class="d-block w-100" height="" alt="..." />
     </div>
   </div>
 
   <div class="container mt-5">
     <div class="ratio ratio-16x9">
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/xqyUdNxWazA?si=DvU65WsfwAUmUG92"
-        title="YouTube video player"
-        frameborder="0"
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/xqyUdNxWazA?si=DvU65WsfwAUmUG92"
+        title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+        allowfullscreen></iframe>
     </div>
   </div>
 
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="prev"
-  >
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="next"
-  >
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -65,20 +40,15 @@
     <div class="col mt-5" *ngFor="let item of arrResponse">
       <div class="card" style="width: 18rem">
         <img src="{{ item.image_path }}" class="card-img-top " alt="..." (click)="productPage(item.product_id)"
-         style="cursor: pointer;"/> 
+          style="cursor: pointer;" />
         <div class="card-body">
           <h5 class="card-title">{{ item.product_name }}</h5>
           <p class="card-text">
             {{ item.specifications | slice : 0 : 150 }}
           </p>
           <a href="#" class="btn btn-primary m-2">Buy Now</a>
-          <a
-            class="btn btn-danger"
-            data-bs-toggle="modal"
-            data-bs-target="#addToCartDiv"
-            (click)="addToCart(item)"
-            >Add to Cart</a
-          >
+          <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addToCartDiv" (click)="addToCart(item)">Add
+            to Cart</a>
         </div>
       </div>
     </div>
@@ -92,20 +62,15 @@
     <div class="col mt-5" *ngFor="let item of arrSearchProducts">
       <div class="card" style="width: 18rem">
         <img src="{{ item.image_path }}" class="card-img-top " alt="..." (click)="productPage(item.product_id)"
-        style="cursor: pointer;"/>
+          style="cursor: pointer;" />
         <div class="card-body">
           <h5 class="card-title">{{ item.product_name }}</h5>
           <p class="card-text">
             {{ item.specifications | slice : 0 : 150 }}
           </p>
           <a href="#" class="btn btn-primary m-2">Buy Now</a>
-          <a
-            class="btn btn-danger"
-            data-bs-toggle="modal"
-            data-bs-target="#addToCartDiv"
-            (click)="addToCart(item)"
-            >Add to Cart</a
-          >
+          <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addToCartDiv" (click)="addToCart(item)">Add
+            to Cart</a>
         </div>
       </div>
     </div>
@@ -128,7 +93,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="closeModal" (click)="closeModal()" class="btn btn-secondary close" data-dismiss="modal"  #closePopup >Close</button>
       </div>
     </div>
   </div>

@@ -8,8 +8,8 @@ import { SellerService } from '../services/seller.service';
   styleUrls: ['./user-orders.component.css']
 })
 export class UserOrdersComponent {
-  addressDetails = JSON.parse(localStorage.getItem('address'));
-  userData;
+  
+  userData:any;
   sessionId = localStorage.getItem('sessionId');
   productObject: any = [];
   orderDetails: any = [];
@@ -24,12 +24,10 @@ export class UserOrdersComponent {
   }
 
   OrderConfirmed() {
-    let obj = {
-      addressId: this.addressDetails.id,
-      sessionId: this.sessionId,
+    let obj = {sessionId: this.sessionId,
       userId: this.userData.id,
     };
-
+    console.log('data',obj)
     this.seller.OrderConfirmed(obj).subscribe((data: any) => {
       if (data) {
         this.orderDetails = data[0];

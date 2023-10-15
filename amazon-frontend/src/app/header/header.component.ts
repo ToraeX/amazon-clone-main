@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit ,OnChanges{
     });
 
   }
+
   ngOnChanges(changes: SimpleChanges) {
   }
 
@@ -38,9 +39,7 @@ export class HeaderComponent implements OnInit ,OnChanges{
      this.userService.getLoginObject.subscribe(user => {
       this.user = user;
       console.log(this.router.url)
-     
-      
-
+    
      })
      this.user = JSON.parse(localStorage.getItem('userData'));
     
