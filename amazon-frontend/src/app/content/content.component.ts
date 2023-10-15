@@ -4,10 +4,13 @@ import {
   SimpleChanges,
   OnChanges,
   Input,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 import { SellerService } from '../services/seller.service';
 import { UserServiceService } from '../services/user-service.service';
 import { Router } from '@angular/router';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -17,6 +20,8 @@ import { Router } from '@angular/router';
 })
 export class ContentComponent implements OnInit, OnChanges {
   @Input() isChange: boolean;
+  @ViewChild('closePopup') closePopup: ElementRef
+
   arrResponse: any = [];
   arrSearchProducts: any = [];
   isSearchClicked;
@@ -67,5 +72,9 @@ export class ContentComponent implements OnInit, OnChanges {
   }
   productPage(id) {
     this.router.navigate(['/productpage/' + id]);
+  }
+
+  closeModal(){
+    document.getElementById("closeModal").click();
   }
 }
