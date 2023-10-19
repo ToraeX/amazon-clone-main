@@ -107,4 +107,9 @@ export class HeaderComponent implements OnInit ,OnChanges{
       });
     
   }
+  itoggled:boolean =false;
+
+  togglemenu(){
+    this.itoggled = !this.itoggled;
+  }
 }

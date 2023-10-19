@@ -24,20 +24,23 @@ export class UserOrdersComponent {
   }
 
   OrderConfirmed() {
-    let obj = {sessionId: this.sessionId,
-      userId: this.userData.id,
-    };
-    console.log('data',obj)
-    this.seller.OrderConfirmed(obj).subscribe((data: any) => {
-      if (data) {
-        this.orderDetails = data[0];
-        let obj = {
-          productId: this.orderDetails.product_id,
-        };
-        this.user.getProductFromOrderTables(obj).subscribe((res: any) => {
-          this.productObject = res;
-        });
-      }
+    // let obj = {sessionId: this.sessionId,
+    //   userId: this.userData.id,
+    // };
+    this.user.getAllOrders().subscribe((data) => {
+      this.productObject = data;
+
     });
+    // this.seller.OrderConfirmed(obj).subscribe((data: any) => {
+    //   if (data) {
+    //     this.orderDetails = data[0];
+    //     let obj = {
+    //       productId: this.orderDetails.product_id,
+    //     };
+    //     this.user.getProductFromOrderTables(obj).subscribe((res: any) => {
+    //       this.productObject = res;
+    //     });
+    //   }
+    // });
   }
 }

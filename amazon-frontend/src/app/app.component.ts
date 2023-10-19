@@ -12,6 +12,12 @@ export class AppComponent{
   getCartDetails(data :any){
     console.log(data);
   } 
+  itoggled:boolean =false;
 
+  togglemenu(){
+    this.itoggled = this.itoggled;
+  }
+  
+  
 
 }

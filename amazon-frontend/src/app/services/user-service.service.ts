@@ -78,7 +78,11 @@ searchProducts(obj:any){
   return this.http.post('http://localhost:3000/searchProducts',{data : obj});
 }
 
-getSingleProduct(id){
-  return this.http.get('http://localhost:3000/getSingleProduct/'+ id);
-}
+  getSingleProduct(id){
+    return this.http.get('http://localhost:3000/getSingleProduct/'+ id);
+  }
+
+  getAllOrders(){
+    return this.http.get('http://localhost:3000/getAllOrders');
+  }
 }

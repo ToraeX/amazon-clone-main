@@ -8,6 +8,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
+let arrTmp = [];
 
 checkIsProductAdded = (obj) => {
   return new Promise((resolve, reject) => {
@@ -463,8 +464,8 @@ searchProducts = (productName) => {
 };
 sendEmail = (orderDetails) => {
   return new Promise(async (resolve, reject) => {
-    console.log('data',orderDetails[0]);
-    let data = {}; 
+    console.log("data", orderDetails[0]);
+    let data = {};
     let output = `<!DOCTYPE html>
     <html>
     <head>
@@ -618,17 +619,17 @@ sendEmail = (orderDetails) => {
                         </div>
                         <div class="main"> <span id="sub-title">
                                 <p><b>Payment Summary</b></p>
-                            </span>`; 
+                            </span>`;
     let obj = {
-      productId : orderDetails[0].product_id
-    }
-    
+      productId: orderDetails[0].product_id,
+    };
+
     const results = await getProductFromOrderTables(obj);
-      console.log({results});
-      if(results.length > 0){
-        results.forEach(ele => {
-          console.log({ele})
-          output += ` <div class="row row-main"  >
+    console.log({ results });
+    if (results.length > 0) {
+      results.forEach((ele) => {
+        console.log({ ele });
+        output += ` <div class="row row-main"  >
            <div class="col-3"> <img class="img-fluid"
            src="${ele.image_path}">
            </div>
@@ -637,15 +638,15 @@ sendEmail = (orderDetails) => {
                    <p><b>${ele.product_name}</b></p>
                </div>
                <div class="row d-flex">
-               <p class="text-muted">${ele.specifications.slice(0,95)}</p>
+               <p class="text-muted">${ele.specifications.slice(0, 95)}</p>
                </div>
            </div>
            <div class="col-3 d-flex justify-content-end">
                <p><b>${ele.price}</b></p>
            </div>
-       </div>`
-        });
-        output += ` <hr>
+       </div>`;
+      });
+      output += ` <hr>
         <div class="total">
             <div class="row">
                         <div class="col"> <b>Total Price</b> </div>
@@ -662,40 +663,36 @@ sendEmail = (orderDetails) => {
 
         </body>
 
-        </html>`
-      }      
-    
+        </html>`;
+    }
 
-
-    console.log('output',output);
-    const nodemailer = require('nodemailer');
-      let transporter = nodemailer.createTransport({
-          service: 'gmail',
-          secure: false,
-          requireTLS: true,
-             auth: {
-                 user: "raunakwalde59@gmail.com",
-                 pass: "cbiv qxbh zeph geqj"
-             }
-     });
-     let details = {
-      to : "pratikr500@gmail.com,yashraut1610@gmail.com,musicxaesthetics@gmail.com",
-      from : "raunakwalde59@gmail.com",
-      subject : "Amazon Order Confirmation",
-      html : output
-     }
-     transporter.sendMail(details,(err) => {
-        if(err){
-          console.log({err})
-        }
-        else{
-          console.log('email sent.');
-          resolve(1);
-        }
-     })
+    console.log("output", output);
+    const nodemailer = require("nodemailer");
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: "raunakwalde59@gmail.com",
+        pass: "cbiv qxbh zeph geqj",
+      },
+    });
+    let details = {
+      to: "pratikr500@gmail.com,yashraut1610@gmail.com,musicxaesthetics@gmail.com",
+      from: "raunakwalde59@gmail.com",
+      subject: "Amazon Order Confirmation",
+      html: output,
+    };
+    transporter.sendMail(details, (err) => {
+      if (err) {
+        console.log({ err });
+      } else {
+        console.log("email sent.");
+        resolve(1);
+      }
+    });
   });
-    
-}
+};
 
 getLastOrderDetail = () => {
   return new Promise((resolve, reject) => {
@@ -710,9 +707,65 @@ getLastOrderDetail = () => {
       }
     });
   });
-}
+};
+getDetailsForOrder = () => {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT a.order_date,a.order_number,a.product_id,a.address_id,a.total_price,b.landmark,b.address,b.pincode,b.city,b.state,b.area,b.mobileNumber,b.name FROM orders a INNER JOIN address b on a.address_id = b.id GROUP BY a.order_date,a.order_number,a.product_id,a.address_id LIMIT 5  `;
 
+    connection.query(sql, (error, results, fields) => {
+      if (error) {
+        throw error;
+        resolve(false);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
 
+getGroupedArrayForOrders = (arrObject) => {
+  return new Promise(async (resolve, reject) => {
+    let obj = {};
+    let isDone = false;
+    const length = arrObject.length;
+    let count = 0;
+
+    for (const key in arrObject) {
+      if (Object.hasOwnProperty.call(arrObject, key)) {
+        const element = arrObject[key];
+
+        obj = {
+          order_date: element.order_date,
+          productId: element.product_id,
+          order_number: element.order_number,
+          address_id: element.address_id,
+          landmark: element.landmark,
+          area: element.area,
+          city: element.city,
+          state: element.state,
+          pincode: element.pincode,
+          mobileNumber: element.mobileNumber,
+          name: element.name,
+          address: element.address,
+          total_price: element.total_price,
+        };
+
+        try {
+          const productObject = await getProductFromOrderTables(obj);
+          obj.productData = productObject;
+          arrTmp.push(obj);
+
+          count++;
+          if (count === length) {
+            resolve(arrTmp);
+          }
+        } catch (error) {
+          reject(error); // Reject the promise if an error occurs
+        }
+      }
+    }
+  });
+};
 
 ////EXPORTING MODULE////
 module.exports = {
@@ -739,5 +792,8 @@ module.exports = {
   searchProducts,
   getSingleProduct,
   sendEmail,
-  getLastOrderDetail
+  getLastOrderDetail,
+  getDetailsForOrder,
+  getGroupedArrayForOrders,
+  arrTmp,
 };

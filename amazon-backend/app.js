@@ -133,8 +133,8 @@ app.post("/savePayment", async (req, res) => {
   if (response) {
     const orderDetails = await db.getLastOrderDetail();
     const email = await db.sendEmail(orderDetails);
-    console.log({email});
-    if(email){
+    console.log({ email });
+    if (email) {
       res.json(response);
     }
   } else {
@@ -245,6 +245,21 @@ app.post("/searchProducts", async (req, res) => {
   const results = await db.searchProducts(productName);
   if (results.length > 0) {
     res.json(results);
+  } else {
+    res.json(false);
+  }
+});
+
+app.get("/getAllOrders", async (req, res) => {
+  const results = await db.getDetailsForOrder();
+
+  if (results.length > 0) {
+    const arrData = await db.getGroupedArrayForOrders(results);
+
+    if (arrData) {
+      console.log("test", db.arrTmp);
+      res.json(arrData);
+    }
   } else {
     res.json(false);
   }
