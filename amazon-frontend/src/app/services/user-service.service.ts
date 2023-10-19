@@ -70,7 +70,7 @@ getCountryList(){
 savePayment(obj : any){
   return this.http.post('http://localhost:3000/savePayment',{data : obj})
 }
-getProductFromOrderTables(obj:any){
+getProductFromOrderTables(obj:any = ''){
   return this.http.post('http://localhost:3000/getProductFromOrderTables',{data : obj})
 }
 
