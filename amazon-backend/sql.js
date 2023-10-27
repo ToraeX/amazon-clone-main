@@ -233,9 +233,7 @@ getSellers = () => {
 
 OrderConfirmed = (obj) => {
   return new Promise((resolve, reject) => {
-    var sql = `SELECT a.*,b.address,b.name,b.landmark,b.area,b.pincode,b.city,b.state FROM orders a
-    INNER JOIN address b on a.address_id = b.id 
-    WHERE 1 and a.user_id = '${obj.userId}'`;
+    var sql = `SELECT a.*,b.address,b.name,b.landmark,b.area,b.pincode,b.city,b.state FROM orders a INNER JOIN address b on a.address_id = b.id WHERE 1 and a.user_id = '${obj.userId}' and session_id = '${obj.sessionId}'`;
     console.log(sql);
     connection.query(sql, (error, results, fields) => {
       if (error) {
@@ -710,7 +708,10 @@ getLastOrderDetail = () => {
 };
 getDetailsForOrder = () => {
   return new Promise((resolve, reject) => {
-    const sql = `SELECT a.order_date,a.order_number,a.product_id,a.address_id,a.total_price,b.landmark,b.address,b.pincode,b.city,b.state,b.area,b.mobileNumber,b.name FROM orders a INNER JOIN address b on a.address_id = b.id GROUP BY a.order_date,a.order_number,a.product_id,a.address_id LIMIT 5  `;
+    const sql = `SELECT a.order_date,a.order_number,a.product_id,a.address_id,a.total_price,b.landmark,b.address,b.pincode,b.city,b.state,b.area,b.mobileNumber,b.name 
+    FROM orders a 
+    INNER JOIN address b on a.address_id = b.id 
+    GROUP BY a.order_date,a.order_number,a.product_id,a.address_id LIMIT 5  `;
 
     connection.query(sql, (error, results, fields) => {
       if (error) {

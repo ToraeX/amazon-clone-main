@@ -20,6 +20,7 @@ import { OrderPlacedComponent } from './order-placed/order-placed.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { PdfFileComponent } from './pdf-file/pdf-file.component';
 
 
 
@@ -41,7 +42,8 @@ import { UserOrdersComponent } from './user-orders/user-orders.component';
     OrderPlacedComponent,
     OrderConfirmedComponent,
     ProductPageComponent,
-    UserOrdersComponent, 
+    UserOrdersComponent,
+    PdfFileComponent, 
   ],
   imports: [
     BrowserModule,
